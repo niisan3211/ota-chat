@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'genrus#index'
+  root 'home#index'
   devise_for :users
   resources :users
 end
