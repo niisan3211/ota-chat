@@ -1,17 +1,23 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.index-header
+.main
+  .main__login
+    .main__login__top
+      %p.main__login__top__text
+        ようこそ♪( ´▽｀)
+    .main__login__bottom
+      .main__login__bottom__form
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .main__login__bottom__form__box
+            = f.email_field :email, autofocus: true, autocomplete: "email",class: "main__login__bottom__form__box__address", id: "form", placeholder: "メールアドレスよろ", required:"required"
+          .main__login__bottom__form__box
+            = f.password_field :password, autocomplete: "current-password",class: "main__login__bottom__form__box__password", id: "form", placeholder: "パスワードよろ", required:"required"
+          - if devise_mapping.rememberable?
+            .field
+              = f.check_box :remember_me
+              = f.label :remember_me
+          %label.main__login__bottom__form__button 
+            = link_to "kk",root_path
+              = f.submit class: "main__login__bottom__form__button__submit", value: "いざゆかん！"
+.index-footer
+  %h6.guide
+    = render "devise/shared/links"
