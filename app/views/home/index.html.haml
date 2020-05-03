@@ -1,8 +1,8 @@
 .page-header
   .page-header__user
-    -# %label.page-header__user__image
-    -#   =icon("fas","camera fa-3x", class: "page-header__user__image__icon")
-    -#   %input{type: "file",id:"page-file"}
+    %label.page-header__user__image
+      =icon "fas","camera fa-3x", class: "page-header__user__image__icon"
+      %input{type: "file",id:"page-file"}
     .page-header__user__name
       .page-header__user__name__box
         おなまえ:
@@ -14,7 +14,9 @@
           %li.page-header__list__icon__box__list__li
             =link_to "使い方","#",id:"icon__li"
           %li.page-header__list__icon__box__list__li
-            =link_to "ログアウト","#",id:"icon__li"
+            =link_to "ログアウト",destroy_user_session_path, method: "delete",id:"icon__li"
+          -# %li.page-header__list__icon__box__list__li
+          -#   =link_to "登録変更",edit_user_registration,id:"icon__li"
 
       
 .page-main
