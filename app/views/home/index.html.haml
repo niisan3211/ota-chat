@@ -5,7 +5,8 @@
       %input{type: "file",id:"page-file"}
     .page-header__user__name
       .page-header__user__name__box
-        おなまえ:
+        お名前：
+        = current_user.name
   .page-header__list
     .page-header__list__icon
       =icon("fas", "list-ul fa-5x", id: "list__icon")
@@ -25,31 +26,12 @@
       お選びのジャンルだよ( ´∀｀)
     .page-main__genru__list
       .page-main__genru__list__top
-        .page-main__genru__list__top__name
-          =link_to "genruname","#",id: "genru-name"
-        .page-main__genru__list__top__name
-          =link_to "genruname","#",id: "genru-name"
-        .page-main__genru__list__top__name
-          =link_to "genruname","#",id: "genru-name"
-        .page-main__genru__list__top__name
-          =link_to "genruname","#",id: "genru-name"
-        .page-main__genru__list__top__name
-          =link_to "genruname","#",id: "genru-name"
-        .page-main__genru__list__top__name
-          =link_to "genruname","#",id: "genru-name"
-        .page-main__genru__list__top__name
-          =link_to "genruname","#",id: "genru-name"
-        .page-main__genru__list__top__name
-          =link_to "genruname","#",id: "genru-name"
-        .page-main__genru__list__top__name
-          =link_to "genruname","#",id: "genru-name"
-        .page-main__genru__list__top__name
-          =link_to "genruname","#",id: "genru-name"
-        .page-main__genru__list__top__name
-          =link_to "genruname","#",id: "genru-name"
-          
+        - current_user.genrus.each do |genru|  
+          .page-main__genru__list__top__name
+            =link_to "#",id: "genru-name" do
+              = genru.name
       .page-main__genru__list__bottom
-        = link_to "ジャンルを探す","#",id: "genru-bottom"
+        = link_to "ジャンルを探す",new_genru_path,id: "genru-bottom"
     
   .page-main__chat
     %h1.page-main__chat__title
