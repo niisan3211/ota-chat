@@ -34,7 +34,7 @@
 
   .right__footer
     .right__footer__new  
-      = link_to "#",id:"write-button" do
+      = link_to new_genru_message_path(params[:id]),id:"write-button" do
         =icon("fas","pen-square fa-5x")
     .right__footer__button
       = link_to "マイページ",root_path,id:"mypage-button"

@@ -20,7 +20,7 @@
             - @genru_search.each do |genru|
               - if genru.name =~ /^[a-zA-Z0-9].*$/
                 %li.genru-new__contents__main__left__list__english
-                  = link_to "#",class:"genru-new__contents__main__left__list__english__li" do
+                  = link_to genru_path(genru.id),class:"genru-new__contents__main__left__list__english__li" do
                     = genru.name
           - else
             - @genrus.each do |genru|
@@ -36,7 +36,7 @@
             - @genru_search.each do |genru|
               - if genru.name =~ /^[ぁ-んァ-ン一-龥]/
                 %li.genru-new__contents__main__right__list__japanese
-                  = link_to "#",class:"genru-new__contents__main__right__list__japanese__li" do
+                  = link_to genru_path(genru.id),class:"genru-new__contents__main__right__list__japanese__li" do
                     = genru.name
           - else
             - @genrus.each do |genru|
