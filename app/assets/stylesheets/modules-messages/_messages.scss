@@ -1,0 +1,12 @@
+@import "new";
+
+* {
+  box-sizing: border-box;
+}
+
+.field_with_errors {
+  display: contents;
+  // もしくは diplay: inline;
+  // エラーでのレイアウト崩れを阻止
+}
+
