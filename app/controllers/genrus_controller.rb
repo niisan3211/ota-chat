@@ -3,7 +3,7 @@ class GenrusController < ApplicationController
   end
 
   def show
-    
+    @tweets = Tweet.where(genru_id: params[:id]).order(:id)
   end
 
   def new
@@ -16,6 +16,8 @@ class GenrusController < ApplicationController
 
   def create
     @genru = Genru.new(genru_params)
+    @genru.users << current_user
+    # ↑はアソシエーション組んだからできる
     @genru.save
     redirect_to  action: "new"
   end
