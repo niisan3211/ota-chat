@@ -28,7 +28,7 @@
       .page-main__genru__list__top
         - current_user.genrus.each do |genru|  
           .page-main__genru__list__top__name
-            =link_to "#",id: "genru-name" do
+            =link_to genru_path(genru.id),id: "genru-name" do
               = genru.name
       .page-main__genru__list__bottom
         = link_to "ジャンルを探す",new_genru_path,id: "genru-bottom"
