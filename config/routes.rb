@@ -5,6 +5,6 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
   }
   resources :genrus do
-    resources :messages
+    resources :tweets
   end
 end
