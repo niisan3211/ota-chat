@@ -2,39 +2,34 @@
   .right__header
       
   .right__main
-    .right__main__post
-      .right__main__post__message
-        おはよう
-      .right__main__post__image
-        image
-      .right__main__post__bottom
-        .right__main__post__bottom__other
-          .right__main__post__bottom__other__comment
-            =link_to "#",id:"comment" do
-              =icon("far","comment-dots fa-2x")
-          .right__main__post__bottom__other__like
-            =icon("far","heart fa-2x")
-          .right__main__post__bottom__other__number
-            23
-        .right__main__post__bottom__create
-          .right__main__post__bottom__name
-            name
-          .right__main__post__bottom__created-at
-            created
-    .right__main__post
-      .right__main__post__message
-        おはよう
-      .right__main__post__image
-        image
-      .right__main__post__create
-        .right__main__post__name
-          name
-        .right__main__post__created-at
-          created
+    - @tweets.each do |tweet|
+      .right__main__post
+        %p.right__main__post__message
+          = tweet.text
+        .right__main__post__image
+          - if tweet.image.present?
+            = image_tag tweet.image.url
+        .right__main__post__bottom
+          .right__main__post__bottom__other
+            .right__main__post__bottom__other__comment
+              =link_to "#",id:"comment" do
+                =icon("far","comment-dots fa-2x")
+            .right__main__post__bottom__other__like
+              =icon("far","heart fa-2x")
+            .right__main__post__bottom__other__number
+              23
+          .right__main__post__bottom__create
+            .right__main__post__bottom__name
+              = tweet.user.name
+            .right__main__post__bottom__created-at
+              = tweet.created_at.strftime("%Y年%m月%d日 %H時%M分")
 
   .right__footer
     .right__footer__new  
-      = link_to new_genru_message_path(params[:id]),id:"write-button" do
+      = link_to new_genru_tweet_path(params[:id]),id:"write-button" do
         =icon("fas","pen-square fa-5x")
     .right__footer__button
       = link_to "マイページ",root_path,id:"mypage-button"
+    .right__footer__favorite
+      お気に入り
+      =icon("far","star fa-2x")
