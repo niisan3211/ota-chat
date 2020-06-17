@@ -71,4 +71,6 @@ gem 'pry-rails'
 # 画像アップロード用のgem↓
 gem 'carrierwave'
 gem 'mini_magick'
+#JavaScript使用の為↓
+gem 'jquery-rails'
 
