@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :name, presence: true, uniqueness: true
 
-  has_one  :users_genru
-  has_many :genrus, through: :users_genru
+  has_many :users_genrus
+  has_many :genrus, through: :users_genrus
   has_many :groups,through: :users_groups
   has_many :tweets
 end
