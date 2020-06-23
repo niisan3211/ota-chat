@@ -7,8 +7,9 @@
         %p.right__main__post__message
           = tweet.text
         .right__main__post__image
-          - if tweet.image.present?
-            = image_tag tweet.image.url
+          - if tweet.images.present?
+            - tweet.images.each do |image|
+              = image_tag image.src.url
         .right__main__post__bottom
           .right__main__post__bottom__other
             .right__main__post__bottom__other__comment
@@ -31,5 +32,5 @@
     .right__footer__button
       = link_to "マイページ",root_path,id:"mypage-button"
     .right__footer__favorite
-      お気に入り
+      = "#{@genru.name}"
       =icon("far","star fa-2x")

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_12_230820) do
+ActiveRecord::Schema.define(version: 2020_06_20_094810) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "comment", null: false
@@ -38,9 +38,16 @@ ActiveRecord::Schema.define(version: 2020_06_12_230820) do
     t.index ["name"], name: "index_groups_on_name", unique: true
   end
 
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "src"
+    t.bigint "tweet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tweet_id"], name: "index_images_on_tweet_id"
+  end
+
   create_table "tweets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "text"
-    t.text "image"
     t.bigint "user_id", null: false
     t.bigint "genru_id", null: false
     t.datetime "created_at", null: false
@@ -76,6 +83,7 @@ ActiveRecord::Schema.define(version: 2020_06_12_230820) do
   add_foreign_key "comments", "tweets"
   add_foreign_key "comments", "users"
   add_foreign_key "groups", "genrus"
+  add_foreign_key "images", "tweets"
   add_foreign_key "tweets", "genrus"
   add_foreign_key "tweets", "users"
   add_foreign_key "users_genrus", "genrus"

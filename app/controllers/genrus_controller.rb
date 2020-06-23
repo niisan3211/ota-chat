@@ -4,6 +4,7 @@ class GenrusController < ApplicationController
 
   def show
     @tweets = Tweet.where(genru_id: params[:id]).order(:id)
+    @genru = Genru.find_by(id: params[:id])
   end
 
   def new

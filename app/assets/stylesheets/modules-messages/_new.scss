@@ -53,13 +53,10 @@
       &__link{
         width: 10%;
         position: absolute;
-        bottom: 10px;
-        right: 0px;
+        // bottom: 10px;
+        // right: 0px;
         &:hover{
           cursor: pointer;
-        }
-        &__file{
-          display: none;
         }
       }
     }
