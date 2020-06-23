@@ -1,0 +1,19 @@
+@import "reset";
+@import "modules-devise/devise";
+@import "home";
+@import "modules-genrus/genrus";
+@import "modules-messages/messages";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+* {
+  box-sizing: border-box;
+}
+
+
+.field_with_errors {
+  display: contents;
+  // もしくは diplay: inline;
+  // エラーでのレイアウト崩れを阻止
+}
+

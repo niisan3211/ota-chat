@@ -1,0 +1,86 @@
+.new-message{
+  width: 100vw;
+  height: 100vh;
+  background-color: ivory;
+  &__header{
+    width: 100vw;
+    height: 100px;
+  }
+  &__main{
+    width: 50%;
+    height: calc(100vh - 200px);
+    background-color: rgb(247, 176, 95);
+    border:1px solid palevioletred;
+    margin: 0 auto;
+    box-shadow:4px 4px palevioletred;
+    border-radius: 20px;
+    padding: 20px 40px;
+    position: relative;
+    &__return{
+      float: right;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      #icon_return{
+        color: white;
+      }
+    }
+    &__write{
+      width: 100%;
+      height: 50%;
+      &__box{
+        width: 100%;
+        background-color: ivory;
+        border-radius: 20px;
+        box-shadow:4px 4px 4px lightgray inset;
+        outline: none;
+        padding: 20px;
+      }
+    }
+    &__image{
+      width: 100%;
+      height: 350px;
+      position: relative;
+      &__upload{
+        width: 100%;
+        height: 100%;
+        display: block;
+        border-radius: 20px;
+        border:2px dotted white;
+        background-color: lightsalmon;
+        
+      }
+      &__link{
+        width: 10%;
+        position: absolute;
+        // bottom: 10px;
+        // right: 0px;
+        &:hover{
+          cursor: pointer;
+        }
+      }
+    }
+    &__button{
+      position: absolute;
+      bottom: 20px;
+      left: 45%;
+      &__submit{
+        width: 120%;
+        padding: 10px;
+        background-color: rgb(238, 150, 216);
+        border-radius: 10px;
+        box-shadow:2px 2px 4px rgb(236, 81, 140);
+        outline: none;
+        &:active{
+          transform: translateY(4px);
+          box-shadow: 0px 0px 1px;
+        }
+      }
+    }
+  }
+  &__footer{
+    width: 100%;
+    height: 100px;
+    
+  }
+}

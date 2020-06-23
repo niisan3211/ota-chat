@@ -1,0 +1,36 @@
+.new-message
+  .new-message__header
+  .new-message__main
+    = form_with(model: @tweet,url: genru_tweets_path(user_id: current_user.id),local: true,method: :post) do |f|
+      .new-message__main__write
+        = f.text_area :text,maxlength: "200",placeholder:"【必須】200文字以内の入力をお願いします",class:"new-message__main__write__box"
+      .new-message__main__image
+        .new-message__main__image__upload
+          #previews
+            - if @tweet.persisted?
+              - @tweet.images.each_with_index do |image, i|
+                = image_tag image.src.url, data: { index: i }, width: "100", height: '100'
+                .js-remove{data:{remove: {index: i}}}
+                  削除
+          %label.new-message__main__image__link
+            -# = f.labelにすると上手くファイルが作動しない
+            = f.fields_for :images, class: "image_box" do |image,i|
+              -# f.fields_for => 1つのリソースに対し紐づいた、複数の別のリソースを同時に保存したい際に利用する
+              -# fields_forの中でimage.indexとすることで、ビルドされた際に振られるindexを取得できます
+              .data_index{data: {index: "#{image.index}"}}
+                = image.file_field :src,class:"js-file",style: "display:none"
+                = icon("far","images fa-2x")
+              -# .data_index__check
+              -#   = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+            - if @tweet.persisted?
+              .data_index{data: {index: "#{@tweet.images.count}"}}
+                =file_field_tag :src, name: "tweet[images_attributes][#{@tweet.images.count}][src]", class: 'js-file'
+                %span.js-remove{data:{remove: {index: i}}}
+                  削除  
+
+      .new-message__main__button
+        = f.submit "送信",class:"new-message__main__button__submit"
+      .new-message__main__return
+        = link_to genru_path(params[:genru_id]),class:".new-message__main__return__icon" do
+          =icon("fas","window-close fa-2x",id: "icon_return")
+  .new-message__footer              

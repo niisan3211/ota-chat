@@ -1,0 +1,187 @@
+.page-header{
+  width: 100%;
+  height: 150px;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(190, 233, 222);
+  &__user{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    &__image{
+      width: 120px;
+      height: 120px;
+      margin: 10px 10px 10px 40px;
+      border-radius: 10px;
+      border: 1px solid black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &__icon:hover{
+        cursor: pointer;
+      }
+      #page-file{
+        display: none;
+      }
+    }
+    &__name{
+      width: 50%;
+      height: 120px;
+      margin: 10px;
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      &__box{
+        width: 100%;
+        border-bottom:1px solid black;
+      }
+    }
+  }
+  &__list{
+    width: 150px;
+    height: 120px;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(190, 233, 222);
+    position:relative;
+    &__icon{
+      position:absolute;
+      top: 20%;
+      left: 0;
+      &:hover{
+        cursor: pointer;
+        .page-header__list__icon__box{
+          visibility: visible;
+        }
+      }
+      &__box{
+        width: 130px;
+        height: 130px;
+        border: 2px solid rgb(140, 140, 224);
+        background-color: rgb(176, 176, 235);
+        box-shadow: 2px 2px 4px darkslateblue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        visibility: hidden;
+        &__list{
+          &__li{
+            display: flex;
+            #icon__li{
+             margin: 10px;
+             text-decoration: none;
+             color: rgb(89, 89, 248);
+             font-weight: bold;
+              &:hover{
+                color: blue;
+              }
+            }
+          }
+        }
+      }
+    }
+    
+  }
+}
+.page-main{
+  width: 100%;
+  height: calc(100vh - 150px);
+  display: flex;
+  &__genru{
+    width: 50%;
+    height: 100%;
+    background-color: rgb(190, 233, 222);
+    padding: 10px 40px 40px 40px;
+    &__title{
+      width: 100%;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 35px;
+      font-weight: bold;
+      margin: 0 auto;
+    }
+    &__list{
+      width: 100%;
+      height: calc(100% - 50px);
+      background-color: rgb(193, 226, 193);
+      margin-top: 10px;
+      border: 5px solid rgb(78, 133, 16);
+      padding: 10px;
+      border-radius: 20px;
+      &__top{
+        width: 100%;
+        height: calc(100% - 80px);
+        overflow: scroll;
+        &__name{
+          display: flex;
+          justify-content: center;
+          #genru-name{
+          text-decoration: none;
+          margin: 12px;
+          color: rgb(230, 117, 13);
+          }
+        }
+        
+      }
+      &__bottom{
+        width: 100%;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        #genru-bottom{
+          padding: 15px;
+          border: 1px solid rgb(89, 150, 89);
+          background-color: rgb(89, 150, 89);
+          text-decoration: none;
+          color: lavender;
+          box-shadow: 2px 2px 4px lightseagreen;
+        }
+        #genru-bottom:active{
+          transform: translateY(4px);/*下に動く*/
+          box-shadow: 0px 0px 1px;
+        }
+      }
+    }
+  }
+  &__chat{
+    width: 50%;
+    height: 100%;
+    background-color: rgb(190, 233, 222);
+    padding: 10px 40px 40px 40px;
+    &__title{
+      width: 100%;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 35px;
+      font-weight: bold;
+      margin: 0 auto;
+    }
+    &__list{
+      width: 100%;
+      height: calc(100% - 50px);
+      background-color: rgb(193, 226, 193);
+      margin-top: 10px;
+      border: 5px solid rgb(78, 133, 16);
+      padding: 10px;
+      overflow: scroll;
+      border-radius: 20px;
+      &__name{
+        display: flex;
+        justify-content: center;
+        #group-name{
+        text-decoration: none;
+        margin: 12px;
+        color: rgb(230, 117, 13);
+        }
+      }
+      
+    }
+  }
+}
+.page-footer{
+
+}

@@ -1,0 +1,55 @@
+.genru-new
+  .genru-new__contents
+    .genru-new__contents__header
+      = link_to root_path ,class: "genru-new__contents__header__return" do
+        =icon("fas","window-close fa-2x",id: "return-icon" )
+      = form_with(url: new_genru_path,method: :get,local: true) do |f|
+        .forms
+          .forms__form
+            = f.search_field :search ,placeholder:"キーワードを入力",class: "forms__form__box",id:"genru-new__box"
+            -# %input{type:"text",placeholder:"キーワードを入力",class: "genru-new__contents__header__form__box",id:"genru-new__box"}
+          .forms__submit
+            = f.submit "検索する？",class:"forms__submit__button",id:"genru-new__submit"
+            -# %input{type:"submit",value:"検索する？",class:"genru-new__contents__header__form__submit__button",id:"genru-new__submit"}
+    .genru-new__contents__main
+      .genru-new__contents__main__left
+        %p.genru-new__contents__main__left__title
+          ＜　A〜XYZ　＞
+        %ul.genru-new__contents__main__left__list
+          - if @genru_search
+            - @genru_search.each do |genru|
+              - if genru.name =~ /^[a-zA-Z0-9].*$/
+                %li.genru-new__contents__main__left__list__english
+                  = link_to genru_path(genru.id),class:"genru-new__contents__main__left__list__english__li" do
+                    = genru.name
+          - else
+            - @genrus.each do |genru|
+              - if genru.name =~ /^[a-zA-Z0-9].*$/
+                %li.genru-new__contents__main__left__list__english
+                  = link_to genru_path(genru.id),class:"genru-new__contents__main__left__list__english__li" do
+                    = genru.name
+      .genru-new__contents__main__right
+        %p.genru-new__contents__main__right__title
+          ＜　あ〜わをん　＞
+        %ul.genru-new__contents__main__right__list
+          - if @genru_search
+            - @genru_search.each do |genru|
+              - if genru.name =~ /^[ぁ-んァ-ン一-龥]/
+                %li.genru-new__contents__main__right__list__japanese
+                  = link_to genru_path(genru.id),class:"genru-new__contents__main__right__list__japanese__li" do
+                    = genru.name
+          - else
+            - @genrus.each do |genru|
+              - if genru.name =~ /^[ぁ-んァ-ン一-龥]/
+                %li.genru-new__contents__main__right__list__japanese
+                  = link_to genru_path(genru.id),class:"genru-new__contents__main__right__list__japanese__li" do
+                    = genru.name
+    .genru-new__contents__footer
+      =form_with(model: @genru,url: genrus_path,local: true,method: :post) do |f|
+        .forms
+          .forms__form
+            = f.text_field :name, autofocus: true, placeholder:"増やしたいジャンル名を入力", class: "forms__form__box", id:"genru-new__box"
+            -# %input{type:"text",placeholder:"増やしたいジャンル名を入力",class: "genru-new__contents__footer__form__box",id:"genru-new__box"}
+          .forms__submit
+            = f.submit "新ジャンル作る！",class:"forms__submit__button",id:"genru-new__submit"
+            -# %input{type:"submit",value:"新ジャンル作る！",class:"genru-new__contents__footer__form__submit__button",id:"genru-new__submit"}

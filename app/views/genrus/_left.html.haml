@@ -1,0 +1,40 @@
+.left
+  .left__header
+    %form{action: "#",method: "post",class:"left__header__search"}
+      %input{type: "search",id: "keyword",class: "left__header__search__keyword"}
+      %label{class: "left__header__rank",class: "left__header__search__rank"}
+        %input{type: "checkbox",value:1 ,name:"checkbox",class:"left__header__search__rank__checkbox"}
+          ライト
+        %input{type: "checkbox",value:2, name:"checkbox",class:"left__header__search__rank__checkbox"}
+          ミドル
+        %input{type: "checkbox",value:3, name:"checkbox",class:"left__header__search__rank__checkbox"}
+          ハード
+      %input{type: "submit", value:"検索",class: "left__header__search__button"}
+  .left__main
+    .left__main__chat-group
+      %p.left__main__chat-group__title
+        このジャンル内のチャットグループだよ♪( ´▽｀)
+      .left__main__chat-group__frame
+        %ul.left__main__chat-group__frame__list
+          %li.left__main__chat-group__frame__list__li
+            = link_to "group","#",id:"left-group"
+          %li.left__main__chat-group__frame__list__li
+            = link_to "group","#",id:"left-group"
+          %li.left__main__chat-group__frame__list__li
+            = link_to "group","#",id:"left-group"
+          %li.left__main__chat-group__frame__list__li
+            = link_to "group","#",id:"left-group"
+          %li.left__main__chat-group__frame__list__li
+            = link_to "group","#",id:"left-group"
+          %li.left__main__chat-group__frame__list__li
+            = link_to "group","#",id:"left-group"
+          %li.left__main__chat-group__frame__list__li
+            = link_to "group","#",id:"left-group"
+          %li.left__main__chat-group__frame__list__li
+            = link_to "group","#",id:"left-group"
+          %li.left__main__chat-group__frame__list__li
+            = link_to "group","#",id:"left-group"
+
+  .left__footer
+    .left__footer__button
+      = link_to "グループ作成しちゃう？","#",id:"new-group"

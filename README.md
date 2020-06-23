@@ -30,7 +30,7 @@
 
 #### Association
 - has_many :tweets
-- has_many :chats
+- has_many :groups
 - has_many :users, through: users_genrus
 
 ### tweets table
