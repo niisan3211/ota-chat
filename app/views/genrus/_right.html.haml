@@ -4,8 +4,9 @@
   .right__main
     - @tweets.each do |tweet|
       .right__main__post
-        %p.right__main__post__message
-          = tweet.text
+        - if tweet.text.present?
+          %p.right__main__post__message
+            = safe_join(tweet.text.split("\n"), tag(:br))
         .right__main__post__image
           - if tweet.images.present?
             - tweet.images.each do |image|

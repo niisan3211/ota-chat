@@ -7,7 +7,7 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
     unless @tweet.valid?
-      render action: :new and return
+      redirect_to action: :new and return
     end
     @tweet.save
     redirect_to controller: :genrus, action: :show,id:(params[:genru_id])

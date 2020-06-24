@@ -20,6 +20,11 @@
       padding: 25px;
       border-radius: 10px;
       margin-bottom: 10px;
+      &__message{
+        width: 100%;
+        padding: 10px;
+        overflow: scroll;
+      }
       &__bottom{
         display: flex;
         justify-content: space-between;

@@ -4,7 +4,8 @@ class Tweet < ApplicationRecord
   has_many :comments
   has_many :images,dependent: :destroy
 
-  validates :text,  presence: true
+  validates :text,  presence: true,
+                    length: { maximum: 280}
   
 
   accepts_nested_attributes_for :images, allow_destroy: true
