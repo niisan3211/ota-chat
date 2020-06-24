@@ -6,6 +6,7 @@
         = f.text_area :text,maxlength: "200",placeholder:"【必須】200文字以内の入力をお願いします",class:"new-message__main__write__box"
       .new-message__main__image
         .new-message__main__image__upload
+          最大5枚まで投稿できるよ♪( ´▽｀)
           #previews
             - if @tweet.persisted?
               - @tweet.images.each_with_index do |image, i|
