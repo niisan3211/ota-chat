@@ -14,12 +14,19 @@
         .right__main__post__bottom
           .right__main__post__bottom__other
             .right__main__post__bottom__other__comment
-              =link_to "#",id:"comment" do
-                =icon("far","comment-dots fa-2x")
+              =link_to genru_tweet_comment_path(genru_id: @genru.id,tweet_id: tweet.id),id:"comment" do
+                = icon("far","comment-dots fa-2x")
+                = tweet.comments.count
             .right__main__post__bottom__other__like
-              =icon("far","heart fa-2x")
+              - if user_signed_in?
+                - if tweet.liked_by?(current_user)
+                  = link_to genru_tweet_likes_path(genru_id: @genru.id,tweet_id: tweet.id),method: :delete, id:"like_heart" do
+                    =icon("fas","heart fa-2x")
+                - else
+                  = link_to genru_tweet_likes_path(genru_id: @genru.id,tweet_id: tweet.id),method: :create, id:"like_not_heart" do
+                    =icon("far","heart fa-2x")
             .right__main__post__bottom__other__number
-              23
+              = tweet.likes.count
           .right__main__post__bottom__create
             .right__main__post__bottom__name
               = tweet.user.name

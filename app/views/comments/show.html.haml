@@ -1,0 +1,27 @@
+.show-comment
+  .show-comment__header
+  .show-comment__main
+    .show-comment__main__write
+      %p.show-comment__main__write__box
+        = @tweet.text
+      .show-comment__main__write__image
+        .show-comment__main__write__image__upload
+          - if @tweet.images.present?
+            - @tweet.images.each do |image|
+              = image_tag image.src.url,size: "100x100"
+        .show-comment__main__write__image__button
+    .show-comment__main__return
+      = link_to genru_path(params[:genru_id]) do
+        =icon("fas","window-close fa-2x",id: "icon__return")
+  .show-comment__comment
+    -if @comments.present?
+      - @comments.each do |comment|
+        .show-comment__comment__box
+          .show-comment__comment__box__comment
+            = safe_join(comment.comment.split("\n"),tag(:br))
+          .show-comment__comment__box__user_name
+            = "by: #{comment.user.name}"
+  .show-comment__footer
+    = form_with(model: @comment,url: genru_tweet_comments_path(genru_id: params[:genru_id],tweet_id: params[:tweet_id],id: params[:id]),id:"comment_form",local: true,method: :post) do |f|
+      = f.text_area :comment,placeholder:"コメント入力(200文字まで)",maxlength: "200",class:"show-comment__footer__box"
+      = f.submit "コメントする",class:"show-comment__footer__submit"
