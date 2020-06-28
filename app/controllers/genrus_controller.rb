@@ -1,7 +1,4 @@
 class GenrusController < ApplicationController
-  def index
-  end
-
   def show
     @tweets = Tweet.where(genru_id: params[:id]).order(:id)
     @genru = Genru.find_by(id: params[:id])
@@ -28,4 +25,5 @@ class GenrusController < ApplicationController
   def genru_params
     params.require(:genru).permit(:name)
   end
+  
 end
