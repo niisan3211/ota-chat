@@ -6,7 +6,10 @@ class Genru < ApplicationRecord
   has_many :tweets
   has_many :groups
 
-
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
+  end
+  
   def self.search(search)
     if search
       Genru.where()
