@@ -34,4 +34,4 @@
       = link_to "マイページ",root_path,id:"mypage-button"
     .right__footer__favorite
       = "#{@genru.name}"
-      =icon("far","star fa-2x")
+      = render partial: "users_genrus/users_genru",locals: { genru: @genru }

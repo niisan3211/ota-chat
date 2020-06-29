@@ -105,7 +105,7 @@
 - belongs_to :user
 - belongs_to :tweet
 
-### favorites table
+### users_genrus table
 |Column|Type|Option|
 |------|----|------|
 |user_id|integer|null: false, foreign_key: true|

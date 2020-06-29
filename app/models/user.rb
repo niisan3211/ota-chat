@@ -5,10 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :name, presence: true, uniqueness: true
 
-  has_many :users_genrus
+  has_many :users_genrus,dependent: :destroy
   has_many :genrus, through: :users_genrus
   has_many :groups,through: :users_groups
-  has_many :tweets
-  has_many :likes
+  has_many :tweets,dependent: :destroy
+  has_many :likes,dependent: :destroy
   has_many :tweets,through: :likes
 end

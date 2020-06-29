@@ -3,7 +3,7 @@ class Tweet < ApplicationRecord
   belongs_to :genru
   has_many :comments
   has_many :images,dependent: :destroy
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :users, through: :likes
 
   validates :text,  presence: true,
