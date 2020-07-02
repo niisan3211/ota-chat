@@ -1,0 +1,56 @@
+.group-show
+  .group-show__contents
+    %form.group-show__contents__header
+      %input{type:"text",placeholder:"#{3}",class:"group-show__contents__header__name"}
+      %input{type:"submit",value:"名前変更",class:"group-show__contents__header__submit"}
+      %p.group-show__contents__header__author
+        = "グループリーダー：#{}"
+    .group-show__contents__main
+      .group-show__contents__main__top
+        .group-show__contents__main__top__left
+          %p.group-show__contents__main__top__left__name
+            = "ジャンル名：#{}"
+          .group-show__contents__main__top__left__rank
+            = "オタクランク:#{}"
+        .group-show__contents__main__top__right
+          %p.group-show__contents__main__top__right__top
+            所属人数
+          .group-show__contents__main__top__right__bottom
+            ="#{}人"
+          .group-show__contents__main__top__right__icon
+            =icon("far","user-circle fa-3x")
+            .group-show__contents__main__top__right__icon__member
+              %ul.group-show__contents__main__top__right__icon__member__list
+                %li.group-show__contents__main__top__right__icon__member__list__li
+                  名前
+                  =link_to "除名","#",class:"group-show__contents__main__top__right__icon__member__list__li__button"
+                
+
+      .group-show__contents__main__middle
+        .group-show__contents__main__middle__tags
+          %p.group-show__contents__main__middle__tags__title
+            付属タグ
+          .group-show__contents__main__middle__tags__box
+            %p.group-show__contents__main__middle__tags__box__name
+              = "＃#{}"
+            %p.group-show__contents__main__middle__tags__box__name
+              腐女子
+            %p.group-show__contents__main__middle__tags__box__name
+              腐女子
+        %form.group-show__contents__main__middle__form
+          %input{type:"text", class:"group-show__contents__main__middle__form__input"}
+          %input{type:"submit",value:"タグを追加！",class:"group-show__contents__main__middle__form__submit"}
+      .group-show__contents__main__bottom
+        %form.group-show__contents__main__bottom__comment
+          %p.group-show__contents__main__bottom__comment__form
+            グループリーダーからのコメント
+          %textarea{class:"group-show__contents__main__bottom__comment__input"}
+          %input{type:"submit",value:"編集！",class:"group-show__contents__main__bottom__comment__submit"}
+    .group-show__contents__footer
+      .group-show__contents__footer__left
+        = link_to "参加希望","#",class:"group-show__contents__footer__left__join"
+        = link_to "脱退する","#",class:"group-show__contents__footer__left__join"
+      .group-show__contents__footer__right
+        = link_to "解散","#",class:"group-show__contents__footer__right__join"
+        =link_to "#",class:"group-show__contents__footer__right__icon" do
+          =icon("fas","times fa-2x")

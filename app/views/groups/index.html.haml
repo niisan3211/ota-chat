@@ -1,0 +1,86 @@
+.group-index
+  .group-index__contents
+    .group-index__contents__sidebar
+      .group-index__contents__sidebar__name
+        name
+      .group-index__contents__sidebar__groupname
+        .group-index__contents__sidebar__groupname__box
+          =link_to "#",class:"group-index__contents__sidebar__groupname__box__link" do
+            .group-index__contents__sidebar__groupname__box__top
+              groupname
+            .group-index__contents__sidebar__groupname__box__bottom
+              grouptalk
+        .group-index__contents__sidebar__groupname__box
+          =link_to "#",class:"group-index__contents__sidebar__groupname__box__link" do
+            .group-index__contents__sidebar__groupname__box__top
+              groupname
+            .group-index__contents__sidebar__groupname__box__bottom
+              grouptalk
+        .group-index__contents__sidebar__groupname__box
+          =link_to "#",class:"group-index__contents__sidebar__groupname__box__link" do
+            .group-index__contents__sidebar__groupname__box__top
+              groupname
+            .group-index__contents__sidebar__groupname__box__bottom
+              grouptalk
+        .group-index__contents__sidebar__groupname__box
+          =link_to "#",class:"group-index__contents__sidebar__groupname__box__link" do
+            .group-index__contents__sidebar__groupname__box__top
+              groupname
+            .group-index__contents__sidebar__groupname__box__bottom
+              grouptalk
+    .group-index__contents__chat
+      .group-index__contents__chat__header
+        .group-index__contents__chat__header__details
+          .group-index__contents__chat__header__details__name
+            groupname
+          .group-index__contents__chat__header__details__member
+            .group-index__contents__chat__header__details__member__left
+              member:
+            %ul.group-index__contents__chat__header__details__member__right
+              %li.group-index__contents__chat__header__details__member__right__name
+                山田太郎
+              %li.group-index__contents__chat__header__details__member__right__name
+                山田太郎
+              %li.group-index__contents__chat__header__details__member__right__name
+                山田太郎
+              %li.group-index__contents__chat__header__details__member__right__name
+                山田太郎
+              %li.group-index__contents__chat__header__details__member__right__name
+                山田太郎
+              %li.group-index__contents__chat__header__details__member__right__name
+                山田太郎
+              %li.group-index__contents__chat__header__details__member__right__name
+                山田太郎
+              %li.group-index__contents__chat__header__details__member__right__name
+                山田太郎
+              %li.group-index__contents__chat__header__details__member__right__name
+                山田太郎
+
+        .group-index__contents__chat__header__button
+          = link_to "マイページ","#",class:"group-index__contents__chat__header__button__mypage"
+      .group-index__contents__chat__main
+        .group-index__contents__chat__main__individual
+          %p.group-index__contents__chat__main__individual__name
+            山田太郎
+          %p.group-index__contents__chat__main__individual__created
+            20200420
+          .group-index__contents__chat__main__individual__box
+            .group-index__contents__chat__main__individual__box__message
+              ohayou
+            .group-index__contents__chat__main__individual__box__image
+              image
+        .group-index__contents__chat__main__individual
+          %p.group-index__contents__chat__main__individual__name
+            山田太郎
+          %p.group-index__contents__chat__main__individual__created
+            20200420
+          .group-index__contents__chat__main__individual__box
+            .group-index__contents__chat__main__individual__box__message
+              ohayou
+            .group-index__contents__chat__main__individual__box__image
+              image
+      .group-index__contents__chat__footer
+        %input{type:"text",class: "group-index__contents__chat__footer__box",id:"group-index__contents__box"}
+        .group-index__contents__chat__footer__submit
+          .group-index__contents__chat__footer__submit__other
+          %input{type:"submit",value:"送信！",class:"group-index__contents__chat__footer__submit__button",id:"group-index__contents__submit"}
