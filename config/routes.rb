@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'users_genrus/create'
-  get 'users_genrus/destroy'
-  get 'likes/create'
-  get 'likes/destroy'
   root 'home#index'
   devise_for :users,controllers:{
     sessions: 'users/sessions',
@@ -10,6 +6,7 @@ Rails.application.routes.draw do
   }
   resources :genrus do
     resource :users_genrus,only: [:create,:destroy]
+    resources :groups, only: [:index,:new,:show]
     resources :tweets do
       resources :comments, only: [:show,:create]
       resource :likes, only: [:create,:destroy]

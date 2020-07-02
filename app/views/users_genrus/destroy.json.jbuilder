@@ -1,1 +1,1 @@
-$('.right__main__post__bottom__other__like').html("#{escape_javascript(render partial: 'likes/like', locals: { genru: @genru,tweet: tweet})}");
+json.partial! "users_genrus/users_genru",genru: @genru

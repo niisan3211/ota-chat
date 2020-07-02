@@ -1,0 +1,47 @@
+.group-new
+  .group-new__contents
+    = form_with(model: @group,local: true) do |f|
+      .group-new__contents__header
+        = f.text_field :name,placeholder:"グループ名を入力",class:"group-new__contents__header__name"
+        = f.text_field 
+        %input{type:"text",placeholder:"グループ名を入力",class:"group-new__contents__header__name"}
+        %input{type:"text",placeholder:"貴方のお名前を入力",class:"group-new__contents__header__author"}
+    .group-new__contents__main
+      .group-new__contents__main__top
+        .group-new__contents__main__top__left
+          %p.group-show__contents__main__top__left__name
+            = "ジャンル名：#{}"
+          %label{class: "left__header__rank",class: "group-new__contents__main__top__left__rank"}
+            %input{type: "radio", name:"radio",class:"group-new__contents__main__top__left__rank__checkbox"}
+              ミドル
+            %input{type: "radio", name:"radio",class:"group-new__contents__main__top__left__rank__checkbox"}
+              ライト
+            %input{type: "radio", name:"radio",class:"group-new__contents__main__top__left__rank__checkbox"}
+              ハード
+        .group-new__contents__main__top__right
+          .group-new__contents__main__top__right__bottom
+            %input{type:"checkbox"}
+          %p.group-new__contents__main__top__right__top
+            所属メンバー
+          .group-new__contents__main__top__right__box
+            %ul.group-new__contents__main__top__right__box__list
+              %li.group-new__contents__main__top__right__box__list__li
+                名前
+                
+
+      .group-new__contents__main__middle
+        .group-new__contents__main__middle__tags
+          %p.group-new__contents__main__middle__tags__title
+            付属タグ
+          %input{type:"text", placeholder:"タグを１つだけ入力",class:"group-new__contents__main__middle__tags__input"}
+      .group-new__contents__main__bottom
+        %form.group-new__contents__main__bottom__comment
+          %p.group-new__contents__main__bottom__comment__form
+            グループリーダーからのコメント
+          %textarea{class:"group-new__contents__main__bottom__comment__input"}
+          %input{type:"submit",value:"コメント！",class:"group-new__contents__main__bottom__comment__submit"}
+      .group-new__contents__footer
+        .group-new__contents__footer__left
+        %label.group-new__contents__footer__right
+          = link_to "保存","#",class:"group-new__contents__footer__right__join"
+          %input{type:"submit",class:"group-new__contents__footer__right__submit"}

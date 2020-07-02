@@ -13,7 +13,6 @@ $(function(){
   }
   $('#comment_form').on('submit',function(e){
     e.preventDefault();
-    console.log(this)
     let formData = new FormData(this);
     // FromData => フォームのデータの送信に使用することができます。その他にも、キーのついたデータを伝送するためにフォームとは独立して使用することもできます
     let url = $(this).attr('action')
