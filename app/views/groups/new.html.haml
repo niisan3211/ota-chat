@@ -1,47 +1,60 @@
 .group-new
   .group-new__contents
-    = form_with(model: @group,local: true) do |f|
+    = form_with(url: genru_groups_path,method: :post,local: true) do |f|
       .group-new__contents__header
         = f.text_field :name,placeholder:"グループ名を入力",class:"group-new__contents__header__name"
-        = f.text_field 
-        %input{type:"text",placeholder:"グループ名を入力",class:"group-new__contents__header__name"}
-        %input{type:"text",placeholder:"貴方のお名前を入力",class:"group-new__contents__header__author"}
-    .group-new__contents__main
-      .group-new__contents__main__top
-        .group-new__contents__main__top__left
-          %p.group-show__contents__main__top__left__name
-            = "ジャンル名：#{}"
-          %label{class: "left__header__rank",class: "group-new__contents__main__top__left__rank"}
-            %input{type: "radio", name:"radio",class:"group-new__contents__main__top__left__rank__checkbox"}
-              ミドル
-            %input{type: "radio", name:"radio",class:"group-new__contents__main__top__left__rank__checkbox"}
-              ライト
-            %input{type: "radio", name:"radio",class:"group-new__contents__main__top__left__rank__checkbox"}
-              ハード
-        .group-new__contents__main__top__right
-          .group-new__contents__main__top__right__bottom
-            %input{type:"checkbox"}
-          %p.group-new__contents__main__top__right__top
-            所属メンバー
-          .group-new__contents__main__top__right__box
-            %ul.group-new__contents__main__top__right__box__list
-              %li.group-new__contents__main__top__right__box__list__li
-                名前
-                
+        グループリーダー：
+        = current_user.name 
+        -# %input{type:"text",placeholder:"グループ名を入力",class:"group-new__contents__header__name"}
+        -# %input{type:"text",placeholder:"貴方のお名前を入力",class:"group-new__contents__header__author"}
+      .group-new__contents__main
+        .group-new__contents__main__top
+          .group-new__contents__main__top__left
+            %p.group-show__contents__main__top__left__name
+              = "ジャンル名：#{@genru.name}"
+            .left__header__rank.group-new__contents__main__top__left__rank
+              オタランク
+              .group-new__contents__main__top__left__rank__checkbox
+                = f.radio_button :ota_rank, :ライト,checked: "checked",name:"radio"
+                = f.label :ライト, class: "rank_label"
+              
+                = f.radio_button :ota_rank, :ミドル,name:"radio"
+                = f.label :ミドル, class: "rank_label"
+              
+                = f.radio_button :ota_rank, :ハード,name:"radio"
+                = f.label :ハード, class: "rank_label"
+          .group-new__contents__main__top__right
+            .group-new__contents__main__top__right__top
+              メンバー候補検索
+            .group-new__contents__main__top__right__search
+              = form_with(url: new_genru_group_path,method: :get,local: true) do |f|
+                = f.search_field :search ,placeholder:"ユーザー検索",id:"group_member",genru_id: @genru.id
+            .group-new__contents__main__top__right__search__box
+            .group-new__contents__main__top__right__box
+              %ul.group-new__contents__main__top__right__box__list
+                %li.group-new__contents__main__top__right__box__list__li
+            .group-new__contents__main__top__right__top
+              所属メンバー
+            .group-new__contents__main__top__right__box
+              %ul.group-new__contents__main__top__right__box__member_list
+                %li.group-new__contents__main__top__right__box__member_list__li
 
-      .group-new__contents__main__middle
-        .group-new__contents__main__middle__tags
-          %p.group-new__contents__main__middle__tags__title
-            付属タグ
-          %input{type:"text", placeholder:"タグを１つだけ入力",class:"group-new__contents__main__middle__tags__input"}
-      .group-new__contents__main__bottom
-        %form.group-new__contents__main__bottom__comment
-          %p.group-new__contents__main__bottom__comment__form
-            グループリーダーからのコメント
-          %textarea{class:"group-new__contents__main__bottom__comment__input"}
-          %input{type:"submit",value:"コメント！",class:"group-new__contents__main__bottom__comment__submit"}
+        .group-new__contents__main__middle
+          .group-new__contents__main__middle__tags
+            %p.group-new__contents__main__middle__tags__title
+              付属タグ
+              = f.fields_for :tags do |tag|
+                = tag.text_field :name,placeholder:"タグを１つだけ入力",class:"group-new__contents__main__middle__tags__input"
+            -# %input{type:"text", placeholder:"タグを１つだけ入力",class:"group-new__contents__main__middle__tags__input"}
+        .group-new__contents__main__bottom
+          .group-new__contents__main__bottom__comment
+            %p.group-new__contents__main__bottom__comment__form
+              グループリーダーからのコメント
+              = f.text_area :comment,class:"group-new__contents__main__bottom__comment__input",maxlength: "280",placeholder:"280字以内です"
+            -# %textarea{class:"group-new__contents__main__bottom__comment__input"}
       .group-new__contents__footer
         .group-new__contents__footer__left
-        %label.group-new__contents__footer__right
-          = link_to "保存","#",class:"group-new__contents__footer__right__join"
-          %input{type:"submit",class:"group-new__contents__footer__right__submit"}
+        .group-new__contents__footer__right
+          = f.submit "保存",class:"group-new__contents__footer__right__join"
+          -# = link_to "保存","#",class:"group-new__contents__footer__right__join"
+          -# %input{type:"submit",class:"group-new__contents__footer__right__submit"}
