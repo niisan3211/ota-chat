@@ -1,11 +1,12 @@
 .group-new{
   width: 100vw;
   height: 100vh;
-  padding: 5px 20% 5px 20%;
+  padding: 50px 25%;
   background-color: ivory;
+  
   &__contents{
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 580px;
     box-shadow:0px 0px 10px rgb(253, 171, 89);
     &__header{
       width: 100%;
@@ -19,6 +20,10 @@
         width: 70%;
         font-size: 40px;
         margin-right: 10px;
+        background-color: rgb(253, 171, 89);
+        border: none;
+        outline: none;
+        border-bottom:1px solid black;
       }
       &__author{
         width: 30%;
@@ -28,7 +33,7 @@
     }
     &__main{
       width: 100%;
-      height: calc(100% - 200px);
+      height: calc(580px - 200px);
       background-color: rgb(255, 243, 190);
       &__top{
         width: 100%;
@@ -64,6 +69,16 @@
             padding: 5px;
             background-color: whitesmoke;
             overflow: scroll;
+            &__list{
+              &__li{
+                display: flex;
+              }
+            }
+            &__member_list{
+              &__li{
+                display: flex;
+              }
+            }
           }
         }
       }
@@ -113,6 +128,7 @@
       height: 100px;
       background-color:rgb(253, 171, 89);
       display: flex;
+      
       &__left{
         width: 80%;
         height: 100%;
@@ -144,6 +160,16 @@
         }
       }
     }
+  }
+}
+#search_name{
+  &:hover{
+    cursor : pointer;
+  }
+}
+#member_name{
+  &:hover{
+    cursor : pointer;
   }
 }
  
