@@ -8,5 +8,5 @@ class Group < ApplicationRecord
   has_many :tags, through: :group_tags
 
   accepts_nested_attributes_for :tags, allow_destroy: true
-  enum ota_rank: {ライト:1, ミドル:2, ハード:3}
+  enum ota_ranks: {ライト:0, ミドル:1, ハード:2}
 end
