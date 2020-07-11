@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_07_02_194408) do
 
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "ota_rank", null: false
+    t.string "ota_rank", null: false
     t.bigint "genru_id", null: false
     t.string "comment"
     t.datetime "created_at", null: false

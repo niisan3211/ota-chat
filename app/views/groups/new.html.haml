@@ -1,6 +1,6 @@
 .group-new
   .group-new__contents
-    = form_with(model: [@genru,@group],local: true) do |f|
+    = form_with(url: genru_groups_path,method: :post,local: true) do |f|
       .group-new__contents__header
         = f.text_field :name,placeholder:"グループ名を入力",class:"group-new__contents__header__name"
         グループリーダー：
@@ -10,10 +10,11 @@
           .group-new__contents__main__top__left
             %p.group-show__contents__main__top__left__name
               = "ジャンル名：#{@genru.name}"
-            .left__header__rank.group-new__contents__main__top__left__rank
-              オタランク
+              .left__header__rank.group-new__contents__main__top__left__rank
+                オタランク
+                = f.select :ota_rank,Group.ota_ranks.keys,{},placeholder: "選択してください",id: "group_ota_rank"
               .group-new__contents__main__top__left__rank__checkbox
-                = f.select :ota_rank,Group.ota_ranks.keys,{},placeholder: "選択してください"
+                -# = f.select :ota_rank,Group.ota_ranks.keys,{},placeholder: "選択してください"
                 -# = f.radio_button :ota_rank, :ライト,checked: "checked",name:"ota_rank"
                 -# = f.label :ライト, class: "rank_label"
               

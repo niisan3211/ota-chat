@@ -43,7 +43,10 @@
             &:hover{
               cursor: pointer;
             }
-            &:active{
+            #like_heart{
+              color: red;
+            }
+            #like_not_heart{
               color: red;
             }
           }

@@ -16,11 +16,11 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(params_group)
-    binding.pry
-    if @group.save
+    if @group.valid?
+      @group.save
       redirect_to genru_path(@group.genru_id)
     else
-      render :new
+      redirect_to new_genru_group_path(@group.genru_id)
     end
   end
 
@@ -30,7 +30,7 @@ class GroupsController < ApplicationController
   private
 
   def params_group
-    params.require(:group).permit(:name,:ota_rank,:comment,users_ids:[],tags_id:[]).merge(genru_id: params[:genru_id])
+    params.permit(:name,:ota_rank,:comment,user_ids:[]).merge(genru_id: params[:genru_id])
   end
 
 end

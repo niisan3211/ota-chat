@@ -16,24 +16,10 @@
         このジャンル内のチャットグループだよ♪( ´▽｀)
       .left__main__chat-group__frame
         %ul.left__main__chat-group__frame__list
-          %li.left__main__chat-group__frame__list__li
-            = link_to "group","#",id:"left-group"
-          %li.left__main__chat-group__frame__list__li
-            = link_to "group","#",id:"left-group"
-          %li.left__main__chat-group__frame__list__li
-            = link_to "group","#",id:"left-group"
-          %li.left__main__chat-group__frame__list__li
-            = link_to "group","#",id:"left-group"
-          %li.left__main__chat-group__frame__list__li
-            = link_to "group","#",id:"left-group"
-          %li.left__main__chat-group__frame__list__li
-            = link_to "group","#",id:"left-group"
-          %li.left__main__chat-group__frame__list__li
-            = link_to "group","#",id:"left-group"
-          %li.left__main__chat-group__frame__list__li
-            = link_to "group","#",id:"left-group"
-          %li.left__main__chat-group__frame__list__li
-            = link_to "group","#",id:"left-group"
+          - @groups.each do |group|
+            %li.left__main__chat-group__frame__list__li
+              = link_to group.name,"#",id:"left-group"
+          
 
   .left__footer
     .left__footer__button
