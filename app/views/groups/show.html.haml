@@ -1,56 +1,57 @@
-.group-show
-  .group-show__contents
-    %form.group-show__contents__header
-      %input{type:"text",placeholder:"#{3}",class:"group-show__contents__header__name"}
-      %input{type:"submit",value:"名前変更",class:"group-show__contents__header__submit"}
-      %p.group-show__contents__header__author
-        = "グループリーダー：#{}"
-    .group-show__contents__main
-      .group-show__contents__main__top
-        .group-show__contents__main__top__left
-          %p.group-show__contents__main__top__left__name
-            = "ジャンル名：#{}"
-          .group-show__contents__main__top__left__rank
-            = "オタクランク:#{}"
-        .group-show__contents__main__top__right
-          %p.group-show__contents__main__top__right__top
-            所属人数
-          .group-show__contents__main__top__right__bottom
-            ="#{}人"
-          .group-show__contents__main__top__right__icon
-            =icon("far","user-circle fa-3x")
-            .group-show__contents__main__top__right__icon__member
-              %ul.group-show__contents__main__top__right__icon__member__list
-                %li.group-show__contents__main__top__right__icon__member__list__li
-                  名前
-                  =link_to "除名","#",class:"group-show__contents__main__top__right__icon__member__list__li__button"
-                
+.group-index
+  .group-index__contents
+    .group-index__contents__sidebar
+      .group-index__contents__sidebar__name
+        = current_user.name
+      .group-index__contents__sidebar__groupname
+        - @groups.each do |g|
+          .group-index__contents__sidebar__groupname__box
+            =link_to genru_group_path(id: g.group_id),class:"group-index__contents__sidebar__groupname__box__link" do
+              .group-index__contents__sidebar__groupname__box__top
+                - g.group_id
+                = Group.find(g.group_id).name
+              .group-index__contents__sidebar__groupname__box__bottom
+                -# = grouptalk
+          
+    .group-index__contents__chat
+      .group-index__contents__chat__header
+        .group-index__contents__chat__header__details
+          .group-index__contents__chat__header__details__name
+            = @group.name
+          .group-index__contents__chat__header__details__member
+            .group-index__contents__chat__header__details__member__left
+              member:
+            %ul.group-index__contents__chat__header__details__member__right
+              - @group.users.each do |user|
+                %li.group-index__contents__chat__header__details__member__right__name
+                  = user.name
+              
 
-      .group-show__contents__main__middle
-        .group-show__contents__main__middle__tags
-          %p.group-show__contents__main__middle__tags__title
-            付属タグ
-          .group-show__contents__main__middle__tags__box
-            %p.group-show__contents__main__middle__tags__box__name
-              = "＃#{}"
-            %p.group-show__contents__main__middle__tags__box__name
-              腐女子
-            %p.group-show__contents__main__middle__tags__box__name
-              腐女子
-        %form.group-show__contents__main__middle__form
-          %input{type:"text", class:"group-show__contents__main__middle__form__input"}
-          %input{type:"submit",value:"タグを追加！",class:"group-show__contents__main__middle__form__submit"}
-      .group-show__contents__main__bottom
-        %form.group-show__contents__main__bottom__comment
-          %p.group-show__contents__main__bottom__comment__form
-            グループリーダーからのコメント
-          %textarea{class:"group-show__contents__main__bottom__comment__input"}
-          %input{type:"submit",value:"編集！",class:"group-show__contents__main__bottom__comment__submit"}
-    .group-show__contents__footer
-      .group-show__contents__footer__left
-        = link_to "参加希望","#",class:"group-show__contents__footer__left__join"
-        = link_to "脱退する","#",class:"group-show__contents__footer__left__join"
-      .group-show__contents__footer__right
-        = link_to "解散","#",class:"group-show__contents__footer__right__join"
-        =link_to "#",class:"group-show__contents__footer__right__icon" do
-          =icon("fas","times fa-2x")
+        .group-index__contents__chat__header__button
+          = link_to "マイページ",root_path,class:"group-index__contents__chat__header__button__mypage"
+      .group-index__contents__chat__main
+        .group-index__contents__chat__main__individual
+          %p.group-index__contents__chat__main__individual__name
+            山田太郎
+          %p.group-index__contents__chat__main__individual__created
+            20200420
+          .group-index__contents__chat__main__individual__box
+            .group-index__contents__chat__main__individual__box__message
+              ohayou
+            .group-index__contents__chat__main__individual__box__image
+              image
+        .group-index__contents__chat__main__individual
+          %p.group-index__contents__chat__main__individual__name
+            山田太郎
+          %p.group-index__contents__chat__main__individual__created
+            20200420
+          .group-index__contents__chat__main__individual__box
+            .group-index__contents__chat__main__individual__box__message
+              ohayou
+            .group-index__contents__chat__main__individual__box__image
+              image
+      .group-index__contents__chat__footer
+        %input{type:"text",class: "group-index__contents__chat__footer__box",id:"group-index__contents__box"}
+        .group-index__contents__chat__footer__submit
+          .group-index__contents__chat__footer__submit__other
+          %input{type:"submit",value:"送信！",class:"group-index__contents__chat__footer__submit__button",id:"group-index__contents__submit"}

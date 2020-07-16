@@ -1,6 +1,4 @@
 class GroupsController < ApplicationController
-  def index
-  end
 
   def new
     @group = Group.new
@@ -16,16 +14,30 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(params_group)
-
+    if @group.valid?
+      @group.save
+      redirect_to genru_path(@group.genru_id)
+    else
+      redirect_to new_genru_group_path(@group.genru_id)
+    end
   end
 
   def show
+    @group = Group.find(params[:id])
+    user = User.find(current_user.id)
+    @groups = user.user_groups
   end
 
   private
 
   def params_group
-    params.require(:group).permit(:name,:ota_rank).merge(genru_id: params[:genru_id])
+    user_ids = params["user_ids"]
+    if user_ids == nil
+      params.permit(:name,:ota_rank,:comment).merge(genru_id: params[:genru_id])
+    else
+      user_ids << current_user.id
+      params.permit(:name,:ota_rank,:comment).merge(genru_id: params[:genru_id],user_ids: user_ids)
+    end
   end
 
 end

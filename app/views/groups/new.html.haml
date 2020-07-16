@@ -5,30 +5,29 @@
         = f.text_field :name,placeholder:"グループ名を入力",class:"group-new__contents__header__name"
         グループリーダー：
         = current_user.name 
-        -# %input{type:"text",placeholder:"グループ名を入力",class:"group-new__contents__header__name"}
-        -# %input{type:"text",placeholder:"貴方のお名前を入力",class:"group-new__contents__header__author"}
       .group-new__contents__main
         .group-new__contents__main__top
           .group-new__contents__main__top__left
             %p.group-show__contents__main__top__left__name
               = "ジャンル名：#{@genru.name}"
-            .left__header__rank.group-new__contents__main__top__left__rank
-              オタランク
+              .left__header__rank.group-new__contents__main__top__left__rank
+                オタランク
+                = f.select :ota_rank,Group.ota_ranks.keys,{},placeholder: "選択してください",id: "group_ota_rank"
               .group-new__contents__main__top__left__rank__checkbox
-                = f.radio_button :ota_rank, :ライト,checked: "checked",name:"radio"
-                = f.label :ライト, class: "rank_label"
+                -# = f.select :ota_rank,Group.ota_ranks.keys,{},placeholder: "選択してください"
+                -# = f.radio_button :ota_rank, :ライト,checked: "checked",name:"ota_rank"
+                -# = f.label :ライト, class: "rank_label"
               
-                = f.radio_button :ota_rank, :ミドル,name:"radio"
-                = f.label :ミドル, class: "rank_label"
+                -# = f.radio_button :ota_rank, :ミドル,name:"ota_rank"
+                -# = f.label :ミドル, class: "rank_label"
               
-                = f.radio_button :ota_rank, :ハード,name:"radio"
-                = f.label :ハード, class: "rank_label"
+                -# = f.radio_button :ota_rank, :ハード,name:"ota_rank"
+                -# = f.label :ハード, class: "rank_label"
           .group-new__contents__main__top__right
             .group-new__contents__main__top__right__top
               メンバー候補検索
             .group-new__contents__main__top__right__search
-              = form_with(url: new_genru_group_path,method: :get,local: true) do |f|
-                = f.search_field :search ,placeholder:"ユーザー検索",id:"group_member",genru_id: @genru.id
+              = f.search_field :search ,placeholder:"ユーザー検索",id:"group_member",genru_id: @genru.id
             .group-new__contents__main__top__right__search__box
             .group-new__contents__main__top__right__box
               %ul.group-new__contents__main__top__right__box__list
@@ -42,19 +41,15 @@
         .group-new__contents__main__middle
           .group-new__contents__main__middle__tags
             %p.group-new__contents__main__middle__tags__title
-              付属タグ
-              = f.fields_for :tags do |tag|
-                = tag.text_field :name,placeholder:"タグを１つだけ入力",class:"group-new__contents__main__middle__tags__input"
-            -# %input{type:"text", placeholder:"タグを１つだけ入力",class:"group-new__contents__main__middle__tags__input"}
+              -# 付属タグ
+              -# = f.fields_for :tags do |tag|
+              -#   = tag.text_field :name,placeholder:"タグを１つだけ入力",class:"group-new__contents__main__middle__tags__title__input"
         .group-new__contents__main__bottom
           .group-new__contents__main__bottom__comment
             %p.group-new__contents__main__bottom__comment__form
               グループリーダーからのコメント
               = f.text_area :comment,class:"group-new__contents__main__bottom__comment__input",maxlength: "280",placeholder:"280字以内です"
-            -# %textarea{class:"group-new__contents__main__bottom__comment__input"}
       .group-new__contents__footer
         .group-new__contents__footer__left
         .group-new__contents__footer__right
-          = f.submit "保存",class:"group-new__contents__footer__right__join"
-          -# = link_to "保存","#",class:"group-new__contents__footer__right__join"
-          -# %input{type:"submit",class:"group-new__contents__footer__right__submit"}
+          = f.submit "保存",class:"group-new__contents__footer__right__join" 

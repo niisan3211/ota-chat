@@ -26,10 +26,12 @@
       お選びのジャンルだよ( ´∀｀)
     .page-main__genru__list
       .page-main__genru__list__top
-        - current_user.genrus.each do |genru|  
-          .page-main__genru__list__top__name
-            =link_to genru_path(genru.id),id: "genru-name" do
-              = genru.name
+        - if @genrus
+          - current_user.genrus.each do |genru|  
+            .page-main__genru__list__top__name
+              =link_to genru_path(genru.id),id: "genru-name" do
+                = genru.name
+        = @genru
       .page-main__genru__list__bottom
         = link_to "ジャンルを探す",new_genru_path,id: "genru-bottom"
     
@@ -37,33 +39,11 @@
     %h1.page-main__chat__title
       所属チャットグループだよ(*^ω^*)
     .page-main__chat__list
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
+      .page-main__chat__list__top
+        - if @groups
+          - @groups.each do |g|
+            .page-main__chat__list__top__name
+              = link_to genru_group_path(genru_id: "#{Group.find(g.group_id).id}",id: g.group_id),id: "group-name" do
+                =Group.find(g.group_id).name
     
 .page-footer

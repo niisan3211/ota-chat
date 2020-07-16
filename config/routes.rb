@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   }
   resources :genrus do
     resource :users_genrus,only: [:create,:destroy]
-    resources :groups, only: [:index,:new,:create,:destroy,:show]
+    resources :groups, only: [:new,:create,:destroy,:edit,:update,:show]
     resources :tweets do
       resources :comments, only: [:show,:create]
       resource :likes, only: [:create,:destroy]
