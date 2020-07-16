@@ -1,6 +1,4 @@
 class GroupsController < ApplicationController
-  def index
-  end
 
   def new
     @group = Group.new
@@ -25,12 +23,21 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @group = Group.find(params[:id])
+    user = User.find(current_user.id)
+    @groups = user.user_groups
   end
 
   private
 
   def params_group
-    params.permit(:name,:ota_rank,:comment,user_ids:[]).merge(genru_id: params[:genru_id])
+    user_ids = params["user_ids"]
+    if user_ids == nil
+      params.permit(:name,:ota_rank,:comment).merge(genru_id: params[:genru_id])
+    else
+      user_ids << current_user.id
+      params.permit(:name,:ota_rank,:comment).merge(genru_id: params[:genru_id],user_ids: user_ids)
+    end
   end
 
 end

@@ -1,5 +1,5 @@
 class Genru < ApplicationRecord
-  validates :name, presence: true
+  validates :name, presence: true,uniqueness: true
 
   has_many :users_genrus,dependent: :destroy
   has_many :users, through: :users_genrus

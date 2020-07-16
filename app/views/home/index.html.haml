@@ -39,33 +39,11 @@
     %h1.page-main__chat__title
       所属チャットグループだよ(*^ω^*)
     .page-main__chat__list
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
-      .page-main__chat__list__name
-        = link_to "gurupname","#",id: "group-name" 
+      .page-main__chat__list__top
+        - if @groups
+          - @groups.each do |g|
+            .page-main__chat__list__top__name
+              = link_to genru_group_path(genru_id: "#{Group.find(g.group_id).id}",id: g.group_id),id: "group-name" do
+                =Group.find(g.group_id).name
     
 .page-footer

@@ -169,19 +169,17 @@
       padding: 10px;
       overflow: scroll;
       border-radius: 20px;
-      &__name{
-        display: flex;
-        justify-content: center;
-        #group-name{
-        text-decoration: none;
-        margin: 12px;
-        color: rgb(230, 117, 13);
+      &__top{
+        &__name{
+          display: flex;
+          justify-content: center;
         }
       }
-      
     }
   }
 }
-.page-footer{
-
+#group-name{
+  text-decoration: none;
+  margin: 12px;
+  color: rgb(230, 117, 13);
 }

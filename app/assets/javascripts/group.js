@@ -12,7 +12,7 @@ $(function(){
   }
 
   function Member(username,id){
-    let html = `<input name='group[user_ids][]' type='hidden' value='${id}'>
+    let html = `<input name='user_ids[]' type='hidden' value='${id}'>
                 <li class="group-new__contents__main__top__right__box__member_list__li" user_id=${id}>　${username}　<div id="member_name">削除</div></li>`;
     $(".group-new__contents__main__top__right__box__member_list").append(html);
   }

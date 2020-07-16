@@ -18,7 +18,7 @@
         %ul.left__main__chat-group__frame__list
           - @groups.each do |group|
             %li.left__main__chat-group__frame__list__li
-              = link_to group.name,"#",id:"left-group"
+              = link_to group.name,genru_group_path(genru_id: params[:id],id: group.id,method: :get),id:"left-group"
           
 
   .left__footer
