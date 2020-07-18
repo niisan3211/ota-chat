@@ -19,6 +19,9 @@
       &__name{
         width: 60%;
         font-size: 40px;
+        background-color:rgb(253, 171, 89);
+        border: none;
+        border-bottom: 1px solid black;
         outline: none;
       }
       &__submit{
@@ -140,18 +143,23 @@
         &__comment{
           width: 100%;
           height: 100%;
-          &__input{
-            display: block;
+          &__form{
             width: 100%;
-            height: 70%;
-            margin-bottom: 10px;
-            outline: none;
+            height: 100%;
+            &__input{
+              display: block;
+              width: 100%;
+              height: 70%;
+              margin-bottom: 10px;
+              outline: none;
+            }
+            &__submit{
+              display: block;
+              width: 20%;
+              float: right;
+            }
           }
-          &__submit{
-            display: block;
-            width: 20%;
-            float: right;
-          }
+          
         }
         
       }

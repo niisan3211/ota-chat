@@ -14,15 +14,6 @@
                 オタランク
                 = f.select :ota_rank,Group.ota_ranks.keys,{},placeholder: "選択してください",id: "group_ota_rank"
               .group-new__contents__main__top__left__rank__checkbox
-                -# = f.select :ota_rank,Group.ota_ranks.keys,{},placeholder: "選択してください"
-                -# = f.radio_button :ota_rank, :ライト,checked: "checked",name:"ota_rank"
-                -# = f.label :ライト, class: "rank_label"
-              
-                -# = f.radio_button :ota_rank, :ミドル,name:"ota_rank"
-                -# = f.label :ミドル, class: "rank_label"
-              
-                -# = f.radio_button :ota_rank, :ハード,name:"ota_rank"
-                -# = f.label :ハード, class: "rank_label"
           .group-new__contents__main__top__right
             .group-new__contents__main__top__right__top
               メンバー候補検索

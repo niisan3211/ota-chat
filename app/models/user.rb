@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :genrus, through: :users_genrus
   has_many :user_groups
   has_many :groups,through: :user_groups
+  has_many :groups
   has_many :tweets,dependent: :destroy
   has_many :likes,dependent: :destroy
   has_many :tweets,through: :likes

@@ -73,4 +73,6 @@ gem 'carrierwave'
 gem 'mini_magick'
 #JavaScript使用の為↓
 gem 'jquery-rails'
+# 少ないコードで複雑な検索機能を実装できるgem↓
+gem 'ransack'
 

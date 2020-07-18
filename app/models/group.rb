@@ -1,5 +1,6 @@
 class Group < ApplicationRecord
   belongs_to :genru
+  belongs_to :user
 
   has_many :messages,dependent: :destroy
   has_many :user_groups,dependent: :destroy
