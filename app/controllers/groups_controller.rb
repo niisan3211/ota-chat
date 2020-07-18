@@ -22,10 +22,26 @@ class GroupsController < ApplicationController
     end
   end
 
+  def edit
+    @group = Group.find(params[:id])
+    @tag = Tag.new
+    @user_id = @group.user_groups.pluck(:user_id)
+    @members = User.where(id: @user_id)
+    @users = @group.user_groups.ids
+  end
+
+  def update
+    @group = Group.find(params[:id])
+    binding.pry
+    # @group.update
+    
+  end
+
   def show
     @group = Group.find(params[:id])
     user = User.find(current_user.id)
     @groups = user.user_groups
+    @message = Message.where(group_id: params[:id])
   end
 
   private
@@ -33,11 +49,15 @@ class GroupsController < ApplicationController
   def params_group
     user_ids = params["user_ids"]
     if user_ids == nil
-      params.permit(:name,:ota_rank,:comment).merge(genru_id: params[:genru_id])
+      params.permit(:name,:ota_rank,:comment).merge(user_id: current_user.id,genru_id: params[:genru_id],user_ids: current_user.id)
     else
       user_ids << current_user.id
-      params.permit(:name,:ota_rank,:comment).merge(genru_id: params[:genru_id],user_ids: user_ids)
+      params.permit(:name,:ota_rank,:comment).merge(user_id: current_user.id,genru_id: params[:genru_id],user_ids: user_ids)
     end
+  end
+
+  def update_group
+    
   end
 
 end

@@ -1,24 +1,35 @@
 .left
   .left__header
-    %form{action: "#",method: "post",class:"left__header__search"}
-      %input{type: "search",id: "keyword",class: "left__header__search__keyword"}
-      %label{class: "left__header__rank",class: "left__header__search__rank"}
-        %input{type: "checkbox",value:1 ,name:"checkbox",class:"left__header__search__rank__checkbox"}
-          ライト
-        %input{type: "checkbox",value:2, name:"checkbox",class:"left__header__search__rank__checkbox"}
-          ミドル
-        %input{type: "checkbox",value:3, name:"checkbox",class:"left__header__search__rank__checkbox"}
-          ハード
-      %input{type: "submit", value:"検索",class: "left__header__search__button"}
+    .left__header__search
+      = search_form_for(@search,url: genru_path(id: params[:id]),method: :get, local: true) do |f|
+        = f.text_field :name_cont, placeholder:"キーワードを入力",id: "keyword",class: "left__header__search__keyword"
+        .left__header__search__rank
+          = f.radio_button :ota_rank_eq,"ライト"
+          = f.label(:ota_rank,"ライト")
+          = f.radio_button :ota_rank_eq,"ミドル"
+          = f.label(:ota_rank,"ミドル")
+          = f.radio_button :ota_rank_eq,"ハード"
+          = f.label(:ota_rank,"ハード")
+          = f.radio_button :ota_rank_eq,'',checked: true 
+          = f.label(:ota_rank,"指定なし")
+        .submit
+          = f.submit "検索",class:"left__header__search__button"
   .left__main
     .left__main__chat-group
       %p.left__main__chat-group__title
         このジャンル内のチャットグループだよ♪( ´▽｀)
       .left__main__chat-group__frame
         %ul.left__main__chat-group__frame__list
-          - @groups.each do |group|
+          - @groups_search.each do |group|
             %li.left__main__chat-group__frame__list__li
-              = link_to group.name,genru_group_path(genru_id: params[:id],id: group.id,method: :get),id:"left-group"
+              = group.user_groups.pluck(:user_id)
+              = [current_user.id]
+              - if group.user_groups.pluck(:user_id).include?(current_user.id)
+                -# ↑user_id =>4なら current_user.id=>4 group.user_groups.pluck(:user_id)=>[3,4]
+                -# pluckは特定のカラムの配列を使用するメソッド
+                = link_to group.name,genru_group_path(genru_id: params[:id],id: group.id,method: :get),id:"left-group"
+              - else
+                = link_to group.name,edit_genru_group_path(genru_id: params[:id],id: group.id),id:"left-group"
           
 
   .left__footer

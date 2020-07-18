@@ -16,7 +16,7 @@
     .group-index__contents__chat
       .group-index__contents__chat__header
         .group-index__contents__chat__header__details
-          .group-index__contents__chat__header__details__name
+          = link_to edit_genru_group_path(genru_id: params[:genru_id],id: @group.id),class:"group-index__contents__chat__header__details__name" do
             = @group.name
           .group-index__contents__chat__header__details__member
             .group-index__contents__chat__header__details__member__left
@@ -30,28 +30,23 @@
         .group-index__contents__chat__header__button
           = link_to "マイページ",root_path,class:"group-index__contents__chat__header__button__mypage"
       .group-index__contents__chat__main
-        .group-index__contents__chat__main__individual
-          %p.group-index__contents__chat__main__individual__name
-            山田太郎
-          %p.group-index__contents__chat__main__individual__created
-            20200420
-          .group-index__contents__chat__main__individual__box
-            .group-index__contents__chat__main__individual__box__message
-              ohayou
-            .group-index__contents__chat__main__individual__box__image
-              image
-        .group-index__contents__chat__main__individual
-          %p.group-index__contents__chat__main__individual__name
-            山田太郎
-          %p.group-index__contents__chat__main__individual__created
-            20200420
-          .group-index__contents__chat__main__individual__box
-            .group-index__contents__chat__main__individual__box__message
-              ohayou
-            .group-index__contents__chat__main__individual__box__image
-              image
+        - @message.each do |message|
+          .group-index__contents__chat__main__individual
+            %p.group-index__contents__chat__main__individual__name
+              = message.user.name
+            %p.group-index__contents__chat__main__individual__created
+              = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
+            .group-index__contents__chat__main__individual__box
+              .group-index__contents__chat__main__individual__box__message
+                = message.message
+              .group-index__contents__chat__main__individual__box__image
+                =image_tag message.message_image.url
       .group-index__contents__chat__footer
-        %input{type:"text",class: "group-index__contents__chat__footer__box",id:"group-index__contents__box"}
-        .group-index__contents__chat__footer__submit
-          .group-index__contents__chat__footer__submit__other
-          %input{type:"submit",value:"送信！",class:"group-index__contents__chat__footer__submit__button",id:"group-index__contents__submit"}
+        = form_with(url: genru_group_messages_path(genru_id: params[:genru_id],group_id: params[:id]),method: :post,local: true) do |f|
+          = f.text_area :message,placeholder:"メッセージを入力",class: "group-index__contents__chat__footer__box",id:"group-index__contents__box"
+          = f.label :message_image, class: 'gr' do
+            = icon('far', 'image fa-2x',class: 'gr_icon')
+            = f.file_field :message_image, class: 'gr_file',style: "display: none;"
+          .group-index__contents__chat__footer__submit
+            .group-index__contents__chat__footer__submit__other
+              = f.submit "送信",class:"group-index__contents__chat__footer__submit__button",id:"group-index__contents__submit"

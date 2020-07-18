@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_02_194408) do
+ActiveRecord::Schema.define(version: 2020_07_16_160245) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "comment", null: false
@@ -41,11 +41,13 @@ ActiveRecord::Schema.define(version: 2020_07_02_194408) do
     t.string "name", null: false
     t.string "ota_rank", null: false
     t.bigint "genru_id", null: false
+    t.bigint "user_id", null: false
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["genru_id"], name: "index_groups_on_genru_id"
     t.index ["name"], name: "index_groups_on_name", unique: true
+    t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -63,6 +65,17 @@ ActiveRecord::Schema.define(version: 2020_07_02_194408) do
     t.datetime "updated_at", null: false
     t.index ["tweet_id"], name: "index_likes_on_tweet_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "message"
+    t.text "message_image"
+    t.bigint "user_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_messages_on_group_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -119,9 +132,12 @@ ActiveRecord::Schema.define(version: 2020_07_02_194408) do
   add_foreign_key "group_tags", "groups"
   add_foreign_key "group_tags", "tags"
   add_foreign_key "groups", "genrus"
+  add_foreign_key "groups", "users"
   add_foreign_key "images", "tweets"
   add_foreign_key "likes", "tweets"
   add_foreign_key "likes", "users"
+  add_foreign_key "messages", "groups"
+  add_foreign_key "messages", "users"
   add_foreign_key "tweets", "genrus"
   add_foreign_key "tweets", "users"
   add_foreign_key "user_groups", "groups"
