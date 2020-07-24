@@ -66,5 +66,4 @@ $(function(){
     .parent()
     .remove();
   });
-  
 });

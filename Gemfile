@@ -75,4 +75,8 @@ gem 'mini_magick'
 gem 'jquery-rails'
 # 少ないコードで複雑な検索機能を実装できるgem↓
 gem 'ransack'
+# タグ付が楽にできるgem
+gem 'acts-as-taggable-on', '~> 6.0' 
+# タグの見た目よくするgem↓
+gem 'jquery-ui-rails'
 

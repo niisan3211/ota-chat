@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :user_groups
   has_many :groups,through: :user_groups
   has_many :groups
+  accepts_nested_attributes_for :groups, allow_destroy: true
   has_many :tweets,dependent: :destroy
   has_many :likes,dependent: :destroy
   has_many :tweets,through: :likes
