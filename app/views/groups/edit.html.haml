@@ -2,7 +2,10 @@
   .group-show
     .group-show__contents
       .group-show__contents__header
-        = f.text_field :name,placeholder:"#{@group.name}",class:"group-show__contents__header__name"
+        -if @group.user_groups.pluck(:user_id).include?(current_user.id)
+          = f.text_field :name,placeholder:"#{@group.name}",class:"group-show__contents__header__name"
+        -else
+          = "#{@group.name}"
         .group-show__contents__header__author
           %p.group_reader
             グループリーダー
@@ -17,44 +20,56 @@
               = "オタクランク　:　#{@group.ota_rank}"
           .group-show__contents__main__top__right
             %p.group-show__contents__main__top__right__top
-              所属人数
             .group-show__contents__main__top__right__bottom
+              所属人数　：　
               ="#{@user_id.count}人"
             .group-show__contents__main__top__right__icon
               =icon("far","user-circle fa-3x")
               .group-show__contents__main__top__right__icon__member
                 %ul.group-show__contents__main__top__right__icon__member__list
                   %li.group-show__contents__main__top__right__icon__member__list__li
+                    - if @group.user_groups.pluck(:user_id).include?(current_user.id)
+                      = f.search_field @members,id: "members",genru_id: @group.genru_id,group_id:@group.id
+                    所属メンバー
                     - @members.each do |member|
-                      .members
+                      %p.members
                         = f.fields_for member.user_groups do |u|
-                          = u.check_box :ids,{checked: true,multiple: true},checked_value: "#{member.user_groups.ids}",unchecked_value: false
-                          = u.label "#{member.name}" 
+                          - if @group.user_groups.pluck(:user_id).include?(current_user.id)
+                            - if member.id == @group.user_id
+                              = u.check_box :ids,{checked: true,multiple: true},checked_value: member.id,unchecked_value: false
+                              = u.label "#{member.name}"
+                            - else
+                              = u.check_box :ids,{checked: true,multiple: true},checked_value: member.id,unchecked_value: false
+                              = u.label "#{member.name}"
+                          -else
+                            = u.label "#{member.name}"
+                    .not_members
+                      %p.members 
         .group-show__contents__main__middle
           .group-show__contents__main__middle__tags
             %p.group-show__contents__main__middle__tags__title
               付属タグ
-            .group-show__contents__main__middle__tags__box
+            %ul.group-show__contents__main__middle__tags__box
+              - if @group.user_groups.pluck(:user_id).include?(current_user.id)
+                %ul#group_tags
+                  = f.text_field :tag_list, value: @group.tag_list.join(','),placeholder:"タグ表示",id: "group_tag"
+              - else
+                = @group.tag_list
               %p.group-show__contents__main__middle__tags__box__name
-                = "＃#{}"
-              %p.group-show__contents__main__middle__tags__box__name
-                腐女子
-              %p.group-show__contents__main__middle__tags__box__name
-                腐女子
           .group-show__contents__main__middle__form
-            = f.fields_for @tag do |t|
-              = t.text_field :name, placeholder:"#を付けてタグを入力",class:"group-show__contents__main__middle__form__input"
-              = t.submit "タグを追加！",class:"group-show__contents__main__middle__form__submit"
         .group-show__contents__main__bottom
           %form.group-show__contents__main__bottom__comment
-            %p.group-show__contents__main__bottom__comment__form
-              グループリーダーからのコメント
-              = f.text_area :comment,placeholder: "#{@group.comment}",class:"group-show__contents__main__bottom__comment__form__input"
-              = f.submit "編集！",class:"group-show__contents__main__bottom__comment__form__submit"
+            .group-show__contents__main__bottom__comment__form
+              グループリーダー、メンバーからのコメント
+              - if @group.user_groups.pluck(:user_id).include?(current_user.id)
+                = f.text_area :comment,placeholder: "#{@group.comment}",maxlength: "280",class:"group-show__contents__main__bottom__comment__form__input"
+                = f.submit "編集！",class:"group-show__contents__main__bottom__comment__form__submit"
+              - else
+                .comment_area
+                  = "#{@group.comment}"
       .group-show__contents__footer
         .group-show__contents__footer__left
           = link_to "参加希望","#",class:"group-show__contents__footer__left__join"
-          = link_to "脱退する","#",class:"group-show__contents__footer__left__join"
         .group-show__contents__footer__right
           = link_to "解散","#",class:"group-show__contents__footer__right__join"
           =link_to genru_path(id: params[:genru_id]),class:"group-show__contents__footer__right__icon" do
