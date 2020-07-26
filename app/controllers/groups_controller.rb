@@ -45,11 +45,19 @@ class GroupsController < ApplicationController
     end
   end
 
+  def destroy
+    @group = Group.find(params[:id])
+    @group.messages.destroy
+    @group.destroy
+    redirect_to genru_path(params[:genru_id])
+  end
+
   def show
     @group = Group.find(params[:id])
     user = User.find(current_user.id)
     @groups = user.user_groups
-    @message = Message.where(group_id: params[:id])
+    @messages = Message.where(group_id: params[:id])
+    @message = Message.new
   end
 
   private

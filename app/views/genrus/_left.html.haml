@@ -2,7 +2,7 @@
   .left__header
     .left__header__search
       = search_form_for(@search,url: genru_path(id: params[:id]),method: :get, local: true) do |f|
-        = f.text_field :name_cont, placeholder:"キーワードを入力",id: "keyword",class: "left__header__search__keyword"
+        = f.text_field :name_cont, placeholder:"グループ名を入力",id: "keyword",class: "left__header__search__keyword"
         .left__header__search__rank
           = f.radio_button :ota_rank_eq,"ライト"
           = f.label(:ota_rank,"ライト")
@@ -25,7 +25,11 @@
               - if group.user_groups.pluck(:user_id).include?(current_user.id)
                 -# ↑user_id =>4なら current_user.id=>4 group.user_groups.pluck(:user_id)=>[3,4]
                 -# pluckは特定のカラムの配列を使用するメソッド
-                = link_to group.name,genru_group_path(genru_id: params[:id],id: group.id,method: :get),id:"left-group"
+                .group_name
+                  = link_to group.name,genru_group_path(genru_id: params[:id],id: group.id,method: :get),id:"left-group"
+                .group_tag
+                  - group.tag_list.each do |tag|
+                    = "##{tag}"
               - else
                 = link_to group.name,edit_genru_group_path(genru_id: params[:id],id: group.id),id:"left-group"
           

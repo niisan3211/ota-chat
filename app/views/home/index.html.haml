@@ -1,8 +1,10 @@
 .page-header
   .page-header__user
-    %label.page-header__user__image
-      =icon "fas","camera fa-3x", class: "page-header__user__image__icon"
-      %input{type: "file",id:"page-file"}
+    .page-header__user__image
+      -if @user.icon
+        = image_tag @user.icon.url,:size =>'125x125'
+      -else
+        =icon "fas","camera fa-3x", class: "page-header__user__image__icon"
     .page-header__user__name
       .page-header__user__name__box
         お名前：
@@ -13,7 +15,7 @@
       .page-header__list__icon__box
         %ul.page-header__list__icon__box__list
           %li.page-header__list__icon__box__list__li
-            =link_to "使い方","#",id:"icon__li"
+            =link_to "編集",edit_user_registration_path,id:"icon__li"
           %li.page-header__list__icon__box__list__li
             =link_to "ログアウト",destroy_user_session_path, method: "delete",id:"icon__li"
           -# %li.page-header__list__icon__box__list__li
