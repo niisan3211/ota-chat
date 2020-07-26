@@ -40,7 +40,8 @@
               .group-index__contents__chat__main__individual__box__message
                 = message.message
               .group-index__contents__chat__main__individual__box__image
-                =image_tag message.message_image.url
+                - unless message.message_image.blank?
+                  =image_tag message.message_image.url
       .group-index__contents__chat__footer
         = form_with(url: genru_group_messages_path(genru_id: params[:genru_id],group_id: params[:id]),method: :post,local: true) do |f|
           = f.text_area :message,placeholder:"メッセージを入力",class: "group-index__contents__chat__footer__box",id:"group-index__contents__box"

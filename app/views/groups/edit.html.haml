@@ -36,44 +36,32 @@
                         = f.fields_for member.user_groups do |u|
                           - if @group.user_groups.pluck(:user_id).include?(current_user.id)
                             - if member.id == @group.user_id
-                              - u.check_box :id,{checked: true,multiple: true},checked_value: member.id,unchecked_value: false
-                              - u.label "#{member.name}"
+                              = u.check_box :ids,{checked: true,multiple: true},checked_value: member.id,unchecked_value: false
+                              = u.label "#{member.name}"
                             - else
                               = u.check_box :ids,{checked: true,multiple: true},checked_value: member.id,unchecked_value: false
                               = u.label "#{member.name}"
-                          - else
-                            - if member.id == @group.user_id
-                              -# - u.check_box :id,{checked: true,multiple: true},checked_value: member.id,unchecked_value: false
-                              - u.label "#{member.name}"
-                            - else
-                              -# = u.check_box :ids,{checked: true,multiple: true},checked_value: member.id,unchecked_value: false
-                              = u.label "#{member.name}"
+                          -else
+                            = u.label "#{member.name}"
                     .not_members
                       %p.members 
-                    -# - @not_members.each do |not_member|
-                      -#   = f.fields_for not_member.user_groups do |u|
-                      -#     = u.check_box :ids,{multiple: true},checked_value: not_member.id,unchecked_value: false,id: "not_checked_member"
-                      -#     = u.label "#{not_member.name}" 
         .group-show__contents__main__middle
           .group-show__contents__main__middle__tags
             %p.group-show__contents__main__middle__tags__title
               付属タグ
-            .group-show__contents__main__middle__tags__box
+            %ul.group-show__contents__main__middle__tags__box
               - if @group.user_groups.pluck(:user_id).include?(current_user.id)
-                %ul.group_tag
-                  = f.text_field :tag_list, value: @group.tag_list.join(','), placeholder:"付けたいタグを入力",id: "group_tag"
+                %ul#group_tags
+                  = f.text_field :tag_list, value: @group.tag_list.join(','),placeholder:"タグ表示",id: "group_tag"
+              - else
+                = @group.tag_list
               %p.group-show__contents__main__middle__tags__box__name
-                = "＃#{}"
-              %p.group-show__contents__main__middle__tags__box__name
-                腐女子
-              %p.group-show__contents__main__middle__tags__box__name
-                腐女子
           .group-show__contents__main__middle__form
         .group-show__contents__main__bottom
           %form.group-show__contents__main__bottom__comment
             .group-show__contents__main__bottom__comment__form
-              グループリーダーからのコメント
-              -if @group.user_id == current_user.id
+              グループリーダー、メンバーからのコメント
+              - if @group.user_groups.pluck(:user_id).include?(current_user.id)
                 = f.text_area :comment,placeholder: "#{@group.comment}",maxlength: "280",class:"group-show__contents__main__bottom__comment__form__input"
                 = f.submit "編集！",class:"group-show__contents__main__bottom__comment__form__submit"
               - else
@@ -82,7 +70,6 @@
       .group-show__contents__footer
         .group-show__contents__footer__left
           = link_to "参加希望","#",class:"group-show__contents__footer__left__join"
-          = link_to "脱退する","#",class:"group-show__contents__footer__left__join"
         .group-show__contents__footer__right
           = link_to "解散","#",class:"group-show__contents__footer__right__join"
           =link_to genru_path(id: params[:genru_id]),class:"group-show__contents__footer__right__icon" do

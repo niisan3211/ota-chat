@@ -121,6 +121,8 @@
             height: 80%;
             border: 1px solid black;
             background-color: rgb(255, 209, 140);
+            overflow: scroll;
+            padding: 5px;
             &__name{
               display: inline;
             }

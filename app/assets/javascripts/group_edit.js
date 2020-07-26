@@ -39,8 +39,7 @@ $(function(){
   })
 
   $(document).ready(function(){
-    let tagit = $('#group_tag').tagit();
-    console.log(tagit)
+    $('#group_tag').tagit();
   })
   
 });

@@ -75,7 +75,9 @@ class GroupsController < ApplicationController
     end
     @box
     @box=@box.compact
-    @box << @group.user_id.to_s
+    unless @box.include?(@group.user_id.to_s)
+      @box << @group.user_id.to_s
+    end
     user_ids = @box
     # params.require(:group).permit(:name,:ota_rank,:comment,:genru_id,:user_id,{user_ids: user_ids})
     params.require(:group).permit(:name,:ota_rank,:comment,:tag_list).merge(user_id: @group.user_id,genru_id: @group.genru_id,user_ids: user_ids)
