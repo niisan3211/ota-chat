@@ -68,9 +68,16 @@
                 .comment_area
                   = "#{@group.comment}"
       .group-show__contents__footer
-        .group-show__contents__footer__left
-          = link_to "参加希望","#",class:"group-show__contents__footer__left__join"
-        .group-show__contents__footer__right
-          = link_to "解散","#",class:"group-show__contents__footer__right__join"
-          =link_to genru_path(id: params[:genru_id]),class:"group-show__contents__footer__right__icon" do
-            =icon("fas","times fa-2x")
+        -if @not_members.include?(current_user.id)
+          .group-show__contents__footer__left
+            = link_to "参加希望","#",class:"group-show__contents__footer__left__join"
+        - elsif @group.user_groups.pluck(:user_id).include?(current_user.id)
+          .group-show__contents__footer__left
+            = link_to "解散","/genrus/#{@group.genru_id}/groups/#{@group.id}",method: :delete,class:"group-show__contents__footer__right__join"
+          .group-show__contents__footer__right
+            = link_to  genru_group_path(id: params[:genru_id],id: params[:id]),class:"group-show__contents__footer__right__icon" do
+              =icon("fas","times fa-2x")
+        - else
+          .group-show__contents__footer__left
+          .group-show__contents__footer__right
+          

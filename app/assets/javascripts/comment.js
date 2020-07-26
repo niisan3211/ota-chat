@@ -18,6 +18,8 @@ $(function(){
     let url = $(this).attr('action')
     // attr() => 要素が持つ指定の属性を返す
     // 今回の場合はthisの中のaction属性の部分（URL）を返す
+
+    console.log(url)
     $.ajax({
       // afax => 非同期通信の意味
       url: url,
@@ -30,7 +32,6 @@ $(function(){
       // contentType => サーバにデータにファイル形式を伝える
       // ajaxのリクエストがFormDataのときはどちらの値も適切な状態で送ることが可能なため、falseにすることで設定が上書きされることを防ぐ
     })
-    
     .done(function(data){
       console.log(data)
       let html = buildHTML(data);
