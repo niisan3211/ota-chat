@@ -47,7 +47,9 @@ class GroupsController < ApplicationController
 
   def destroy
     @group = Group.find(params[:id])
-    @group.messages.destroy
+    @group.messages.each do |message|
+      message.delete
+    end
     @group.destroy
     redirect_to genru_path(params[:genru_id])
   end

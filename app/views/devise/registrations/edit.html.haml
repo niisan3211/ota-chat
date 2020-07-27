@@ -13,15 +13,16 @@
           .middle__login__bottom__form__box
             = f.email_field :email, autofocus: true, autocomplete: "email", class: "middle__login__bottom__form__box__address", id: "form", placeholder: "メールアドレスは？",required:"required"
           .middle__login__bottom__form__box
-            = f.label :icon, class: 'icon' do
-              = icon('far', 'image fa-2x',class: 'edit_icon')
-              = f.file_field :icon, class: 'edit_file',style: "display: none;"
-          .middle__login__bottom__form__box
             = f.password_field :password, autocomplete: "new-password", class: "middle__login__bottom__form__box__password", id: "form", placeholder: "新しいパスワードにしたい場合は入力"
           .middle__login__bottom__form__box
             = f.password_field :password_confirmation, autocomplete: "new-password", class: "middle__login__bottom__form__box__password-second", id: "form", placeholder: "新しいパスワードもう一回！"
           -# .middle__login__bottom__form__box
           -#   = f.password_field :current_password, autocomplete: "current-password", class: "middle__login__bottom__form__box__password-second", id: "form",placeholder: "既存のパスワードを入力"
+          .middle__login__bottom__form__box
+            あなたのアイコンを選択してね→
+            = f.label :icon, class: 'icon' do
+              = icon('fas', 'camera fa-2x',class: 'edit_icon')
+              = f.file_field :icon, class: 'edit_file',style: "display: none;"
           .actions
             = f.submit "アカウント編集！",class: "middle__login__bottom__form__button__submit"
 .new-footer

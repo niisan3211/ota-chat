@@ -1,10 +1,10 @@
 .page-header
   .page-header__user
     .page-header__user__image
-      -if @user.icon
-        = image_tag @user.icon.url,:size =>'125x125'
-      -else
+      -if @user.icon.file.nil? 
         =icon "fas","camera fa-3x", class: "page-header__user__image__icon"
+      -else
+        = image_tag @user.icon.url,:size =>'125x125'
     .page-header__user__name
       .page-header__user__name__box
         お名前：
