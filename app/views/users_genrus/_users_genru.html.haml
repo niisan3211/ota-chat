@@ -1,8 +1,8 @@
 #favorite_link
   #favorite_link{id: genru.id}
     - if @genru.users_genrus.where(user_id: current_user.id).exists?
-      = link_to genru_users_genrus_path(genru.id),method: :delete,id:"favorite_genru", data:{genru_id: "#{genru.id}",remoto: true,url: "/genrus/#{genru.id}/users_genrus"} do
+      = link_to genru_users_genrus_path(genru.id),method: :delete,remote: true,id:"favorite_genru", data:{genru_id: "#{genru.id}",url: "/genrus/#{genru.id}/users_genrus"} do
         =icon("fas","star fa-2x",class: "favoriteGenru")
     - else
-      = link_to genru_users_genrus_path(genru.id),method: :post,id:"favorite_not_genru", data:{genru_id: "#{genru.id}",remoto: true,url: "/genrus/#{genru.id}/users_genrus"},remoto: true do
+      = link_to genru_users_genrus_path(genru.id),method: :post,remote: true,id:"favorite_not_genru",data:{genru_id: "#{genru.id}",url: "/genrus/#{genru.id}/users_genrus"} do
         =icon("far","star fa-2x",class: "favoriteGenru")

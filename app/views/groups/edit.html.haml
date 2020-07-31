@@ -2,7 +2,7 @@
   .group-show
     .group-show__contents
       .group-show__contents__header
-        -if @group.user_groups.pluck(:user_id).include?(current_user.id)
+        -if @group.users.ids.include?(current_user.id)
           = f.text_field :name,placeholder:"#{@group.name}",class:"group-show__contents__header__name"
         -else
           = "#{@group.name}"
@@ -22,21 +22,21 @@
             %p.group-show__contents__main__top__right__top
             .group-show__contents__main__top__right__bottom
               所属人数　：　
-              ="#{@user_id.count}人"
+              ="#{@group.users.count}人"
             .group-show__contents__main__top__right__icon
               =icon("far","user-circle fa-3x")
               .group-show__contents__main__top__right__icon__member
                 %ul.group-show__contents__main__top__right__icon__member__list
                   %li.group-show__contents__main__top__right__icon__member__list__li
-                    - if @group.user_groups.pluck(:user_id).include?(current_user.id)
+                    -if @group.users.ids.include?(current_user.id)
                       = f.search_field @members,id: "members",genru_id: @group.genru_id,group_id:@group.id
                     所属メンバー
                     - @members.each do |member|
                       %p.members
-                        = f.fields_for member.user_groups do |u|
-                          - if @group.user_groups.pluck(:user_id).include?(current_user.id)
+                        = f.fields_for member.groups do |u|
+                          -if @group.users.ids.include?(current_user.id) || @group.user_id == current_user.id
                             - if member.id == @group.user_id
-                              = u.check_box :ids,{checked: true,multiple: true},checked_value: member.id,unchecked_value: false
+                              - u.check_box :ids,{checked: true,multiple: true},checked_value: member.id,unchecked_value: false
                               = u.label "#{member.name}"
                             - else
                               = u.check_box :ids,{checked: true,multiple: true},checked_value: member.id,unchecked_value: false
@@ -50,9 +50,9 @@
             %p.group-show__contents__main__middle__tags__title
               付属タグ
             %ul.group-show__contents__main__middle__tags__box
-              - if @group.user_groups.pluck(:user_id).include?(current_user.id)
+              -if @group.users.ids.include?(current_user.id)
                 %ul#group_tags
-                  = f.text_field :tag_list, value: @group.tag_list.join(','),placeholder:"タグ表示",id: "group_tag"
+                  = f.text_field :tag_list,value: @group.tag_list.join(','),placeholder:"タグ表示",id: "group_tag"
               - else
                 = @group.tag_list
               %p.group-show__contents__main__middle__tags__box__name
@@ -61,23 +61,48 @@
           %form.group-show__contents__main__bottom__comment
             .group-show__contents__main__bottom__comment__form
               グループリーダー、メンバーからのコメント
-              - if @group.user_groups.pluck(:user_id).include?(current_user.id)
+              -if @group.users.ids.include?(current_user.id)
                 = f.text_area :comment,placeholder: "#{@group.comment}",maxlength: "280",class:"group-show__contents__main__bottom__comment__form__input"
-                = f.submit "編集！",class:"group-show__contents__main__bottom__comment__form__submit"
+                = f.submit "更新！",class:"group-show__contents__main__bottom__comment__form__submit"
               - else
                 .comment_area
                   = "#{@group.comment}"
       .group-show__contents__footer
-        -if @not_members.include?(current_user.id)
-          .group-show__contents__footer__left
-            = link_to "参加希望","#",class:"group-show__contents__footer__left__join"
-        - elsif @group.user_groups.pluck(:user_id).include?(current_user.id)
+        - if @group.user_id == current_user.id
           .group-show__contents__footer__left
             = link_to "解散","/genrus/#{@group.genru_id}/groups/#{@group.id}",method: :delete,class:"group-show__contents__footer__right__join"
           .group-show__contents__footer__right
             = link_to  genru_group_path(id: params[:genru_id],id: params[:id]),class:"group-show__contents__footer__right__icon" do
               =icon("fas","times fa-2x")
+        -elsif @not_members.ids.include?(current_user.id)
+          .group-show__contents__footer__left
+            - if @hope_dones == []
+              = form_with(model: @hope,url: "/genrus/#{@group.genru_id}/groups/#{@group.id}/hopes",id: @group.id, local: true, method: :post,class: "group-show__contents__footer__left__hope") do |f|
+                = f.text_field :comment,class:"hope_comment"
+                = f.check_box :hope,{checked: true,style: "display: none;"},checked_value: current_user.id
+                = f.check_box :group,{checked: true,style: "display: none;"},checked_value: @group.id
+                = f.check_box :group_reader,{checked: true,style: "display: none;"},checked_value: @group.user_id
+                = f.submit "参加希望",class:"group-show__contents__footer__left__join"
+            - elsif @hope_dones != []
+              .group-show__contents__footer__left
+                - @hope_dones.each do |done|
+                  - unless done.hope == current_user.id
+                    = form_with(model: @hope,url: "/genrus/#{@group.genru_id}/groups/#{@group.id}/hopes",id: @group.id, local: true, method: :post,class: "group-show__contents__footer__left__hope") do |f|
+                      = f.text_field :comment,class:"hope_comment"
+                      = f.check_box :hope,{checked: true,style: "display: none;"},checked_value: current_user.id
+                      = f.check_box :group,{checked: true,style: "display: none;"},checked_value: @group.id
+                      = f.check_box :group_reader,{checked: true,style: "display: none;"},checked_value: @group.user_id
+                      = f.submit "参加希望",class:"group-show__contents__footer__left__join"
+                  - else
+                    .group-show__contents__footer__left__join
+                      申請済
+          .group-show__contents__footer__right
+            = link_to  genru_path(id: params[:genru_id]),class:"group-show__contents__footer__right__icon" do
+              =icon("fas","times fa-2x")
+            -# = link_to "参加希望","/genrus/#{@group.genru_id}/groups/#{@group.id}/hopes",method: :post,class:"group-show__contents__footer__left__join"
         - else
           .group-show__contents__footer__left
           .group-show__contents__footer__right
+            = link_to  genru_group_path(id: params[:genru_id],id: params[:id]),class:"group-show__contents__footer__right__icon" do
+              =icon("fas","times fa-2x")
           

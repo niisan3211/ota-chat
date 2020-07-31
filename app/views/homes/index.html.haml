@@ -15,11 +15,11 @@
       .page-header__list__icon__box
         %ul.page-header__list__icon__box__list
           %li.page-header__list__icon__box__list__li
-            =link_to "編集",edit_user_registration_path,id:"icon__li"
+            =link_to "登録変更",edit_user_registration_path,id:"icon__li"
+          %li.page-header__list__icon__box__list__li
+            =link_to "グループ希望",homes_path,id:"icon__li"
           %li.page-header__list__icon__box__list__li
             =link_to "ログアウト",destroy_user_session_path, method: "delete",id:"icon__li"
-          -# %li.page-header__list__icon__box__list__li
-          -#   =link_to "登録変更",edit_user_registration,id:"icon__li"
 
       
 .page-main

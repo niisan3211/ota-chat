@@ -56,17 +56,23 @@
             font-size: 30px;
           }
           &__member{
-            display: flex;
             width: 80%;
             font-size: 16px;
-            &__right{
+            &__group{
               display: flex;
-              overflow-x: auto;
-              white-space: nowrap;
-              &__name{
-                margin-left: 5px;
+              &__right{
+                display: flex;
+                overflow-x: auto;
+                white-space: nowrap;
+                &__name{
+                  margin-left: 5px;
+                }
+              }
+              &__left{
+                display: flex;
               }
             }
+            
           }
         }
         &__button{

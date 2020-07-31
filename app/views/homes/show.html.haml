@@ -1,0 +1,61 @@
+.page-header
+  .page-header__user
+    .page-header__user__image
+      -if @user.icon.file.nil? 
+        =icon "fas","camera fa-3x", class: "page-header__user__image__icon"
+      -else
+        = image_tag @user.icon.url,:size =>'125x125'
+    .page-header__user__name
+      .page-header__user__name__box
+        お名前：
+        = current_user.name
+  .page-header__list
+    .page-header__list__icon
+      =icon("fas", "list-ul fa-5x", id: "list__icon")
+      .page-header__list__icon__box
+        %ul.page-header__list__icon__box__list
+          %li.page-header__list__icon__box__list__li
+            =link_to "マイページ",root_path,id:"icon__li"
+
+      
+.page-main
+  .page-main__genru
+    %h1.page-main__genru__title
+      グループ参加希望者( ´∀｀)
+    .page-main__genru__list
+      .page-main__genru__list__top
+        - if @hope_groups
+          - @hope_groups.each do |group|  
+            - if group.pass_fail == nil
+              .page-main__genru__list__top__name
+                = link_to  genru_group_hopes_path(genru_id: Group.find(group.group).genru_id,group_id: Group.find(group.group).id,params:{id: group.id,hope: group.hope,group: group.group,group_reader: group.group_reader}), method: :delete, id: "group-name" do
+                  .group_name
+                    グループ名：
+                    = Group.find(group.group).name
+                  .hope_user
+                    = User.find(group.hope).name
+                    さんからのメッセージ： 
+                    = group.comment
+                  .hope_user
+                    参加承諾ならこちらをクリック
+              .page-main__genru__list__top__name
+                = link_to  "↑の希望を拒否する場合はこちらをクリック",genru_group_hopes_path(genru_id: Group.find(group.group).genru_id,group_id: Group.find(group.group).id,params:{id: group.id,hope: group.hope,group: group.group,group_reader: group.group_reader}), method: :put, id: "bad_hope"
+            - else
+              .page-main__genru__list__top__name
+              .page-main__genru__list__top__name
+
+  .page-main__chat
+    %h1.page-main__chat__title
+      参加希望申請済み(*^ω^*)
+    .page-main__chat__list
+      .page-main__chat__list__top
+        - if @hope_hopes
+          - @hope_hopes.each do |hope|
+            .page-main__chat__list__top__name
+              #group-name
+                = Group.find(hope.group).name
+              - if hope.pass_fail 
+                %p.sorry
+                  「ごめんなさい」されました
+    
+.page-footer

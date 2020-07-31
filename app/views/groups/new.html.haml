@@ -1,10 +1,13 @@
 .group-new
   .group-new__contents
-    = form_with(url: genru_groups_path,method: :post,local: true) do |f|
+    = form_with(model: @group,url: genru_groups_path,local: true) do |f|
+      = render 'layouts/error_messages', model: f.object
       .group-new__contents__header
         = f.text_field :name,placeholder:"グループ名を入力",class:"group-new__contents__header__name"
-        グループリーダー：
-        = current_user.name 
+        .group_reader
+          グループリーダー：
+        .group_reader
+          = current_user.name 
       .group-new__contents__main
         .group-new__contents__main__top
           .group-new__contents__main__top__left

@@ -1,0 +1,32 @@
+.search
+  .search__main
+    - @tweets.each do |tweet|
+      -if tweet.likes.pluck(:user_id).include?(current_user.id)
+        .search__main__post
+          - if tweet.text.present?
+            %p.search__main__post__message
+              = safe_join(tweet.text.split("\n"), tag(:br))
+          .search__main__post__image
+            - if tweet.images.present?
+              - tweet.images.each do |image|
+                = image_tag image.src.url
+          .search__main__post__bottom
+            .search__main__post__bottom__other
+              .search__main__post__bottom__other__comment
+                =link_to genru_tweet_comment_path(genru_id: @genru.id,tweet_id: tweet.id),id:"comment" do
+                  = icon("far","comment-dots fa-2x")
+                  = tweet.comments.count
+              .search__main__post__bottom__other__like
+                = render partial: 'likes/like', locals: { genru: @genru,tweet: tweet}
+              
+            .search__main__post__bottom__create
+              .search__main__post__bottom__name
+                = tweet.user.name
+              .search__main__post__bottom__created-at
+                = tweet.created_at.strftime("%Y年%m月%d日 %H時%M分")
+
+  .search__footer
+    .search__footer__new  
+    .search__footer__button
+      = link_to "戻る",genru_path(@genru.id),id:"mypage-button"
+    .search__footer__favorite

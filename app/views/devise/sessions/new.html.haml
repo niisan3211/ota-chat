@@ -11,10 +11,10 @@
             = f.email_field :email, autofocus: true, autocomplete: "email",class: "main__login__bottom__form__box__address", id: "form", placeholder: "メールアドレスよろ", required:"required"
           .main__login__bottom__form__box
             = f.password_field :password, autocomplete: "current-password",class: "main__login__bottom__form__box__password", id: "form", placeholder: "パスワードよろ", required:"required"
-          - if devise_mapping.rememberable?
-            .field
-              = f.check_box :remember_me
-              = f.label :remember_me
+          -# - if devise_mapping.rememberable?
+          -#   .field
+          -#     = f.check_box :remember_me
+          -#     = f.label :remember_me
           %label.main__login__bottom__form__button 
             = f.submit class: "main__login__bottom__form__button__submit", value: "いざゆかん！"
 .index-footer

@@ -1,11 +1,11 @@
-#like_heart
+.like_heart
   - if user_signed_in?
     -if tweet.likes.where(user_id: current_user.id).exists?
-      = link_to genru_tweet_likes_path(genru_id: genru.id,tweet_id: tweet.id),method: :delete,id:"like_heart" do
+      = link_to genru_tweet_likes_path(genru_id: genru.id,tweet_id: tweet.id),method: :delete,remote: true,class: "likes",id:"like_heart" do
         =icon("fas","heart fa-2x",id: "like_heart_icon")
         = tweet.likes.count
     - else
-      = link_to genru_tweet_likes_path(genru_id: genru.id,tweet_id: tweet.id),method: :post,id:"like_not_heart" do
+      = link_to genru_tweet_likes_path(genru_id: genru.id,tweet_id: tweet.id),method: :post,remote: true,class: "likes",id:"like_not_heart" do
         =icon("far","heart fa-2x",id: "like_not_heart_icon")
         = tweet.likes.count
   

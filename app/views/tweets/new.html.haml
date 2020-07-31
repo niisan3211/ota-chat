@@ -7,7 +7,7 @@
       .new-message__main__image
         .new-message__main__image__upload
           最大5枚まで投稿できるよ♪( ´▽｀)
-          #previews
+          %ul#previews
             - if @tweet.persisted?
               - @tweet.images.each_with_index do |image, i|
                 = image_tag image.src.url, data: { index: i }, width: "100", height: '100'
