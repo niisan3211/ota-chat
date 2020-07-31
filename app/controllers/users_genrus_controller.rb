@@ -20,6 +20,6 @@ class UsersGenrusController < ApplicationController
   end
   private
   def set_item
-    @genru = Genru.find_by(params[:genru_id])
+    @genru = Genru.find_by(params[:id])
   end
 end
