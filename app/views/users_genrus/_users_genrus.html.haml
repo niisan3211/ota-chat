@@ -1,6 +1,6 @@
 #favorite_link
   #favorite_link{id: genru.id}
-    - if @genru.users_genrus.where(user_id: current_user.id).exists?
+    - if genru.users_genrus.where(user_id: current_user.id).exists?
       = link_to genru_users_genrus_path(genru.id),method: :delete,remote: true,id:"favorite_genru", data:{genru_id: "#{genru.id}",url: "/genrus/#{genru.id}/users_genrus"} do
         =icon("fas","star fa-2x",class: "favoriteGenru")
     - else
