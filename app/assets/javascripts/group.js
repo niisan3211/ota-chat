@@ -53,17 +53,20 @@ $(function(){
       alert("通信エラーです。ユーザーが表示できません。");
     });
   });
-  $(document).on("click","#search_name",function(){
-    let UserId = $(this).attr("data-user-id")
-    let UserName = $(this).attr("data-user-name")
-    Member(UserName,UserId)
-    $(this)
-    .parent()
-    .remove();
+  $(document).on('turbolinks:load', function() {
+    $(document).on("click","#search_name",function(){
+      let UserId = $(this).attr("data-user-id")
+      let UserName = $(this).attr("data-user-name")
+      Member(UserName,UserId)
+      $(this)
+      .parent()
+      .remove();
+    });
+    $(document).on("click","#member_name",function(){
+      $(this)
+      .parent()
+      .remove();
+    });
   });
-  $(document).on("click","#member_name",function(){
-    $(this)
-    .parent()
-    .remove();
-  });
+  
 });

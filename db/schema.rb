@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_24_081130) do
+ActiveRecord::Schema.define(version: 2020_07_29_204828) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "comment", null: false
@@ -39,6 +39,16 @@ ActiveRecord::Schema.define(version: 2020_07_24_081130) do
     t.index ["genru_id"], name: "index_groups_on_genru_id"
     t.index ["name"], name: "index_groups_on_name", unique: true
     t.index ["user_id"], name: "index_groups_on_user_id"
+  end
+
+  create_table "hopes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "hope", null: false
+    t.integer "group", null: false
+    t.integer "group_reader", null: false
+    t.integer "pass_fail"
+    t.text "comment", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -106,15 +116,6 @@ ActiveRecord::Schema.define(version: 2020_07_24_081130) do
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
-  create_table "user_groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "group_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_user_groups_on_group_id"
-    t.index ["user_id"], name: "index_user_groups_on_user_id"
-  end
-
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", default: "", null: false
@@ -139,6 +140,15 @@ ActiveRecord::Schema.define(version: 2020_07_24_081130) do
     t.index ["user_id"], name: "index_users_genrus_on_user_id"
   end
 
+  create_table "users_groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_users_groups_on_group_id"
+    t.index ["user_id"], name: "index_users_groups_on_user_id"
+  end
+
   add_foreign_key "comments", "tweets"
   add_foreign_key "comments", "users"
   add_foreign_key "groups", "genrus"
@@ -150,8 +160,8 @@ ActiveRecord::Schema.define(version: 2020_07_24_081130) do
   add_foreign_key "messages", "users"
   add_foreign_key "tweets", "genrus"
   add_foreign_key "tweets", "users"
-  add_foreign_key "user_groups", "groups"
-  add_foreign_key "user_groups", "users"
   add_foreign_key "users_genrus", "genrus"
   add_foreign_key "users_genrus", "users"
+  add_foreign_key "users_groups", "groups"
+  add_foreign_key "users_groups", "users"
 end

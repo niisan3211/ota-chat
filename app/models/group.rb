@@ -3,17 +3,19 @@ class Group < ApplicationRecord
   belongs_to :user
 
   has_many :messages,dependent: :destroy
-  has_many :user_groups,dependent: :destroy
-  has_many :users, through: :user_groups
+  has_many :users_groups,dependent: :destroy
+  has_many :users, through: :users_groups
+
+  # has_one :through と has_and_belongs_to_many
+
+  # has_and_belongs_to_manyは中間テーブルを挟んだ１対１のみの中間テーブル
+  # モデルがない
+  # has_one :through は中間テーブル自体を対応することができる(推奨)
+  # モデルがある
+
   acts_as_taggable
   # acts_as_taggable_on :tags　と同じ意味のエイリアス
   # tags のなかにIDやら名前などが入る。イメージ的には親情報。
-  
-  # has_many :group_tags,dependent: :destroy
-  # has_many :tags, through: :group_tags
-  # accepts_nested_attributes_for :group_tags
-  # accepts_nested_attributes_for :user_groups, allow_destroy: true
-  # accepts_nested_attributes_for :users, allow_destroy: true
 
   validates :name, presence: true,uniqueness: true
   validates :comment,presence: true

@@ -5,7 +5,21 @@ class GenrusController < ApplicationController
     @groups = Group.where(genru_id: @genru.id)
     @search = @groups.ransack(params[:q])
     @groups_search = @search.result(distinct: true)
+    @likes = Like.where(user_id: current_user.id)
+    # resultは結果を返すという意味
+    # distinct: trueは検索結果のレコード重複しないようにします。
   end
+
+  def search
+    @tweets = Tweet.where(genru_id: params[:id]).order(:id)
+    @genru = Genru.find_by(id: params[:id])
+    @groups = Group.where(genru_id: @genru.id)
+    @like = params[:like]
+    unless @like == "1"
+      redirect_to genru_path(params[:id]) 
+    end
+  end
+
 
   def new
     @genru = Genru.new

@@ -17,9 +17,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      &__icon:hover{
-        cursor: pointer;
-      }
       #page-file{
         display: none;
       }
@@ -121,6 +118,11 @@
           text-decoration: none;
           margin: 12px;
           color: rgb(230, 117, 13);
+          }
+          #bad_hope{
+            text-decoration: none;
+            margin: 12px;
+            color: rgb(236, 55, 31);
           }
         }
         

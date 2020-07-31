@@ -44,5 +44,6 @@ $(function(){
     .fail(function(){
       alert('error');
     })
+    $('.show-comment__comment').animate({ scrollTop: $('.show-comment__comment')[0].scrollHeight});
   })
 });

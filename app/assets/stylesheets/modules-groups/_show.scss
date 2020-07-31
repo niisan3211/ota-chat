@@ -188,6 +188,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        &__hope{
+          display: flex;
+          justify-content: center;
+        }
         &__join{
           width: 100px;
           height: 40px;

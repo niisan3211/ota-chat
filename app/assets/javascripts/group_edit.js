@@ -1,7 +1,7 @@
 $(function(){
   function GroupNotMember(member){
     let html =`<div class="members">
-                <input name="group[user_group][ids][]" type="hidden" value="0"><input type="checkbox" value="{:checked_value=>${member.id}, :unchecked_value=>false}" name="group[user_group][ids][]" id="not_checked_member",data-member-id="${member.id},data-member-name=${member.name}">
+                <input name="group[group][ids][]" type="hidden" value="0"><input type="checkbox" value="{:checked_value=>${member.id}, :unchecked_value=>false}" name="group[group][ids][]" id="not_checked_member",data-member-id="${member.id},data-member-name=${member.name}">
                 <label id="not_membername">${member.name}</label>
               </div>`
     $(".not_members").append(html);
@@ -37,9 +37,11 @@ $(function(){
       alert("通信エラーです。ユーザーが表示できません。");
     });
   })
-
-  $(document).ready(function(){
-    $('#group_tag').tagit();
-  })
+  $(document).on('turbolinks:load', function() {
+    $(document).ready(function(){
+      $('#group_tag').tagit();
+    })
+  });
+  
   
 });

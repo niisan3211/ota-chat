@@ -22,7 +22,7 @@
         %ul.left__main__chat-group__frame__list
           - @groups_search.each do |group|
             %li.left__main__chat-group__frame__list__li
-              - if group.user_groups.pluck(:user_id).include?(current_user.id)
+              -if group.users.ids.include?(current_user.id)
                 -# ↑user_id =>4なら current_user.id=>4 group.user_groups.pluck(:user_id)=>[3,4]
                 -# pluckは特定のカラムの配列を使用するメソッド
                 .group_name

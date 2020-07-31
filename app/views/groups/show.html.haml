@@ -8,7 +8,6 @@
           .group-index__contents__sidebar__groupname__box
             =link_to genru_group_path(id: g.group_id),class:"group-index__contents__sidebar__groupname__box__link" do
               .group-index__contents__sidebar__groupname__box__top
-                - g.group_id
                 = Group.find(g.group_id).name
                 .group-index_tag_list
                 - Group.find(g.group_id).tag_list.each do |tag|
@@ -22,13 +21,20 @@
           = link_to edit_genru_group_path(genru_id: params[:genru_id],id: @group.id),class:"group-index__contents__chat__header__details__name" do
             = @group.name
           .group-index__contents__chat__header__details__member
-            .group-index__contents__chat__header__details__member__left
-              member:
-            %ul.group-index__contents__chat__header__details__member__right
-              - @group.users.each do |user|
-                %li.group-index__contents__chat__header__details__member__right__name
-                  = user.name
-              
+            .group-index__contents__chat__header__details__member__group
+              .group-index__contents__chat__header__details__member__group__left
+                ジャンル名　：　
+              %ul.group-index__contents__chat__header__details__member__group__right
+                %li.group-index__contents__chat__header__details__member__group__right__name
+                  = link_to genru_path(id: params[:genru_id]) do
+                    = @group.genru.name
+            .group-index__contents__chat__header__details__member__group
+              .group-index__contents__chat__header__details__member__group__left
+                member　:　
+              %ul.group-index__contents__chat__header__details__member__group__right
+                - @group.users.each do |user|
+                  %li.group-index__contents__chat__header__details__member__group__right__name
+                    = user.name
 
         .group-index__contents__chat__header__button
           = link_to "マイページ",root_path,class:"group-index__contents__chat__header__button__mypage"
@@ -36,8 +42,11 @@
         - @messages.each do |message|
           .group-index__contents__chat__main__individual
             %p.group-index__contents__chat__main__individual__name
-              = image_tag message.user.icon.url,:size =>'50x50'
-              = message.user.name
+              -unless message.user.icon.url
+                = message.user.name
+              -else
+                = image_tag message.user.icon.url,:size =>'50x50'
+                = message.user.name
             %p.group-index__contents__chat__main__individual__created
               = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
             .group-index__contents__chat__main__individual__box
