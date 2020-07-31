@@ -1,1 +1,1 @@
-json.partial! "users_genrus/users_genru",genru: @genru
+# json.partial! "users_genrus/users_genru",genru: @genru
