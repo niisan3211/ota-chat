@@ -31,7 +31,11 @@
                   - group.tag_list.each do |tag|
                     = "##{tag}"
               - else
-                = link_to group.name,edit_genru_group_path(genru_id: params[:id],id: group.id),id:"left-group"
+                .group_name
+                  = link_to group.name,edit_genru_group_path(genru_id: params[:id],id: group.id),id:"left-group"
+                .group_tag
+                  - group.tag_list.each do |tag|
+                    = "##{tag}"
           
 
   .left__footer
