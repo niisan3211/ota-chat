@@ -19,6 +19,9 @@
                 = tweet.comments.count
             .right__main__post__bottom__other__like
               = render partial: 'likes/like', locals: { genru: @genru,tweet: tweet}
+            -if tweet.user_id == current_user.id
+              .right__main__post__bottom__other__delete
+                = link_to "削除",genru_tweet_path(genru_id: params[:id],id: tweet.id),method: :delete,id: "tweet_delete"
             
           .right__main__post__bottom__create
             .right__main__post__bottom__name

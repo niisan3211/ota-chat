@@ -12,6 +12,12 @@ class TweetsController < ApplicationController
     @tweet.save
     redirect_to controller: :genrus, action: :show,id:(params[:genru_id])
   end
+  
+  def destroy
+    @tweet = Tweet.find(params[:id])
+    @tweet.destroy
+    redirect_to genru_path(params[:genru_id])
+  end
 
   private
 

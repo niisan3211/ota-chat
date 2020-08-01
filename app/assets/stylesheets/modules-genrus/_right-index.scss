@@ -57,6 +57,12 @@
               color: red;
             }
           }
+          &__delete{
+            margin-left: 20px;
+            #tweet_delete{
+              color: grey;
+            }
+          }
           &__number{
             margin: 5px;
           }
