@@ -1,15 +1,15 @@
 # README
 ## Ota-Chat
-### 【アプリ内容】
+### :sunny:アプリ内容
 - どんなアプリか<br>
 趣味が同じ人同士でTwitterのような投稿をし合い、その中でグループを作って趣味が合う人同士でチャットができるようにしたアプリ
-### 【URL(デプロイ済)】
+### :sunny:URL(デプロイ済)
 https://ota-chat.herokuapp.com/
-### 【開発環境】
+### :sunny:開発環境
 - Ruby 
 - Ruby on Rails
 - VSCode（Visual Studio Code）
-### 【機能説明】
+### :sunny:機能説明
   #### :star:ログイン登録機能<br>
   #### :star:アカウント作成機能<br>
   #### :star:ホーム画面<br>
