@@ -8,8 +8,7 @@
   - アカウント作成機能<br>
   - ホーム画面<br>
   ユーザー自身がお気に入りしているジャンルと所属しているグループを見ることができます<br>右上のアイコンからアカウントの変更、ログアウト、グループ希望確認（下記説明）ができます<br>
-<img width="222" alt="スクリーンショット 2020-08-01 23 46 10" src="https://user-images.githubusercontent.com/61651779/89104042-3b446900-d451-11ea-95a7-105a88e9417f.png"><img width="222" alt="スクリーンショット 2020-08-02 1 42 11" src="https://user-images.githubusercontent.com/61651779/89106079-dc3b2000-d461-11ea-84a7-53e487026f3b.png">
-<br>
+  <img width="222" alt="スクリーンショット 2020-08-01 23 46 10" src="https://user-images.githubusercontent.com/61651779/89104042-3b446900-d451-11ea-95a7-105a88e9417f.png"><img width="222" alt="スクリーンショット 2020-08-02 1 42 11" src="https://user-images.githubusercontent.com/61651779/89106079-dc3b2000-d461-11ea-84a7-53e487026f3b.png"><br>
   - ジャンル作成機能<br>
   自分の好きなジャンルを作成することができます<br>
   また、既存ジャンルを押せば、そのジャンル投稿画面に飛ぶことができます<br>
@@ -23,6 +22,10 @@
   グループメンバーはグループメンバーを変更、グループのタグ付、グループコメントの記述ができます<br>
   そのグループに所属してないユーザーは詳細の確認とそのグループに所属したい場合の希望（コメント可能）を送信することができます<br>
 <img width="222" alt="スクリーンショット 2020-08-02 1 03 59" src="https://user-images.githubusercontent.com/61651779/89105779-24a50e80-d45f-11ea-9e64-e421ff1e809f.png"><img width="222" alt="スクリーンショット 2020-08-02 1 31 44" src="https://user-images.githubusercontent.com/61651779/89105876-f96eef00-d45f-11ea-9abd-3d01b2c34a4d.png"><img width="222" alt="スクリーンショット 2020-08-02 1 34 12" src="https://user-images.githubusercontent.com/61651779/89105918-4f439700-d460-11ea-8ac0-3d22de2ca3c8.png"><br>
-  - グループ希望、承認画面<br><img width="444" alt="スクリーンショット 2020-08-02 1 18 36" src="https://user-images.githubusercontent.com/61651779/89105943-739f7380-d460-11ea-8799-fb5a82c5d75b.png"><br>
+  - グループ希望、承認画面<br>
+  グループに参加希望を出した際は、右側の参加希望申請済みに希望を出したグループ名が表示される<br>
+  グループリーダーをしている場合は、そのグループに参加希望が出されると左側に参加希望を出したユーザー名とコメントが表示される<br>
+  参加承諾のリンクと拒否のリンクがあり、グループリーダーはそのコメントなどを見て選択できるようになっている<br>
+  <img width="444" alt="スクリーンショット 2020-08-02 1 18 36" src="https://user-images.githubusercontent.com/61651779/89105943-739f7380-d460-11ea-8799-fb5a82c5d75b.png"><br>
   
   
