@@ -84,6 +84,6 @@ gem 'acts-as-taggable-on', '~> 6.0'
 # タグの見た目よくするgem↓
 gem 'jquery-ui-rails'
 # 利用可能なすべてのAWSサービスgemサポートが含まれています↓
-# gem "aws-sdk-s3", require: false
+gem "aws-sdk-s3", require: false
 gem 'fog-aws'
 gem 'dotenv-rails'
