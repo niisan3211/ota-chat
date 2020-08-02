@@ -15,7 +15,7 @@
   ジャンルの検索も可能です<br>
   <img width="444" alt="スクリーンショット 2020-08-01 23 53 56" src="https://user-images.githubusercontent.com/61651779/89104203-74310d80-d452-11ea-8f89-032d6cc09495.png"><br>
   - ジャンル投稿画面（ジャンル内グループ検索可能）<br><img width="444" alt="スクリーンショット 2020-08-02 0 56 12" src="https://user-images.githubusercontent.com/61651779/89105323-1523c680-d45b-11ea-9015-e3cbe2aa9960.png"><br>
-  - グループチャット画面<br><img width="444" alt="スクリーンショット 2020-08-02 1 03 38" src="https://user-images.githubusercontent.com/61651779/89105775-1d7e0080-d45f-11ea-8572-e46902dd3a30.png"><br>
+  - グループチャット画面<br><img width="444" alt="スクリーンショット 2020-08-02 14 15 28" src="https://user-images.githubusercontent.com/61651779/89116064-aaaa6f00-d4ca-11ea-9522-0ce871f83f02.png"><br>
   - グループ詳細画面<br>
   左からグループ作成者ver,グループメンバーver,グループメンバー外verとなります<br>
   グループ作成者はグループを解散させること、グループメンバーを変更、グループのタグ付グループコメントの記述ができます<br>
