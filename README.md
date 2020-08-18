@@ -9,8 +9,8 @@
 ### :sunny:URL(デプロイ済)
 https://ota-chat.herokuapp.com/
 
-テスター
-アドレス：ooo@gmail.com
+テスター<br>
+アドレス：ooo@gmail.com<br>
 Pass:oooooo1
 ### :sunny:開発環境
 - Ruby 
