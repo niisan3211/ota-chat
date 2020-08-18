@@ -8,6 +8,10 @@
   - グループ作成では、グループにランク（ライト・ミドル・ハード）を選択でき、メンバーの趣味の度合いによって選択できるようになっています
 ### :sunny:URL(デプロイ済)
 https://ota-chat.herokuapp.com/
+
+テスター
+アドレス：ooo@gmail.com
+Pass:oooooo1
 ### :sunny:開発環境
 - Ruby 
 - Ruby on Rails
