@@ -80,6 +80,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params.require(:user).permit(:name,:email,:password,:password_confirmation)
   end
 
+  # editでパスワード無効で変更するための記述
   def update_resource(resource, params)
     resource.update_without_password(params)
   end
