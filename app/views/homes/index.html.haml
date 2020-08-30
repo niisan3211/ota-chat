@@ -28,12 +28,10 @@
       お選びのジャンルだよ( ´∀｀)
     .page-main__genru__list
       .page-main__genru__list__top
-        - if @genrus
-          - current_user.genrus.each do |genru|  
-            .page-main__genru__list__top__name
-              =link_to genru_path(genru.id),id: "genru-name" do
-                = genru.name
-        = @genru
+        - current_user.genrus.each do |genru|  
+          .page-main__genru__list__top__name
+            =link_to genru_path(genru.id),id: "genru-name" do
+              = genru.name
       .page-main__genru__list__bottom
         = link_to "ジャンルを探す",new_genru_path,id: "genru-bottom"
     
